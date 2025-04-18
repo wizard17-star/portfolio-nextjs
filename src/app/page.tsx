@@ -103,7 +103,7 @@ function CVSection() {
               /serhat-aslan
             </a>
           </p>
-          <p><strong>Languages:</strong> Turkish (Native), English (C1), Greek (B2), Polish (A2)</p>
+          <p><strong>Languages:</strong> Turkish (Native), English (C1), Greek (C2), Polish (A2)</p>
         </div>
 
         {/* Right - Education */}
