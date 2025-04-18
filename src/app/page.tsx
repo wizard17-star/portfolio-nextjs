@@ -3,11 +3,18 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { blogPosts } from './data/blogPosts'
+import { getMediumPosts } from '../lib/getMediumPosts'
+
+type Post = {
+  title: string
+  description: string
+  link: string
+}
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<'cv' | 'projects' | 'blog' | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const [blogPosts, setBlogPosts] = useState<Post[]>([])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -21,13 +28,20 @@ export default function Home() {
     }
   }, [])
 
+  useEffect(() => {
+    async function fetchPosts() {
+      const allPosts = await getMediumPosts()
+      setBlogPosts(allPosts.slice(0, 3))
+    }
+    if (activeSection === 'blog') {
+      fetchPosts()
+    }
+  }, [activeSection])
+
   return (
     <main className="min-h-screen flex flex-col justify-start items-center px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 text-center bg-white dark:bg-gray-900 transition-colors">
       <div className="animate-fade-in-down">
-        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-2">
-          Serhat Aslan
-        </h1>
-
+        <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-2">Serhat Aslan</h1>
         <p className="text-md sm:text-lg text-gray-600 dark:text-gray-300 mb-6">
           Data Engineer • AI Specialist • Cloud & BI Architect
         </p>
@@ -42,7 +56,7 @@ export default function Home() {
       <div ref={containerRef} className="w-full max-w-5xl mx-auto transition-all duration-300 animate-fade-in-up min-h-[50vh]">
         {activeSection === 'cv' && <CVSection />}
         {activeSection === 'projects' && <ProjectsSection />}
-        {activeSection === 'blog' && <BlogSection />}
+        {activeSection === 'blog' && <BlogSection posts={blogPosts} />}
         <CallToAction />
         <ContactSection />
       </div>
@@ -119,28 +133,39 @@ function ProjectsSection() {
   )
 }
 
-function BlogSection() {
+function BlogSection({ posts }: { posts: Post[] }) {
+  if (posts.length === 0) {
+    return <div className="text-center py-10 text-gray-500 dark:text-gray-400">Loading blog posts...</div>
+  }
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {blogPosts.map((post, i) => (
-        <div key={i} className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow hover:shadow-lg transition-all border border-gray-200 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{post.title}</h3>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3">{post.description}</p>
-          <Link href={post.link} target="_blank" className="text-blue-600 hover:underline dark:text-blue-400 text-sm">
-            Read on Medium →
-          </Link>
-        </div>
-      ))}
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 text-left">
+      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Latest Blog Posts</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {posts.map((post, i) => (
+          <div
+            key={i}
+            className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-blue-500 hover:shadow-md transition-all"
+          >
+            <Link href={post.link} target="_blank">
+              <h3 className="text-base font-semibold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {post.title}
+              </h3>
+            </Link>
+          </div>
+        ))}
+      </div>
+      <div className="text-center mt-6">
+        <Link href="/blog" className="text-blue-600 dark:text-blue-400 font-medium hover:underline">
+          View All Posts →
+        </Link>
+      </div>
     </div>
   )
 }
 
 function CallToAction() {
   const router = useRouter()
-
-  const handleClick = () => {
-    router.push('/contact')
-  }
 
   return (
     <section className="w-full px-4 sm:px-6 lg:px-8 mt-6 mb-8">
@@ -152,7 +177,7 @@ function CallToAction() {
           Open to freelance, consulting, or full-time opportunities.
         </p>
         <button
-          onClick={handleClick}
+          onClick={() => router.push('/contact')}
           className="px-6 py-2 bg-blue-600 text-white rounded-full font-medium shadow hover:bg-blue-700 transition"
         >
           Contact Me →
@@ -165,12 +190,8 @@ function CallToAction() {
 function ContactSection() {
   return (
     <section id="contact" className="mt-6 pb-10 bg-white dark:bg-gray-900 text-center py-16 px-4">
-      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-        Let's Connect
-      </h2>
-      <p className="text-gray-600 dark:text-gray-300 mb-6">
-        Feel free to reach out via email or connect with me on LinkedIn.
-      </p>
+      <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">Let's Connect</h2>
+      <p className="text-gray-600 dark:text-gray-300 mb-6">Feel free to reach out via email or connect with me on LinkedIn.</p>
       <div className="space-y-4 text-sm">
         <p className="text-blue-600 dark:text-blue-400">
           📧 <a href="mailto:serhataslan0009@gmail.com" className="hover:underline">serhataslan0009@gmail.com</a>
