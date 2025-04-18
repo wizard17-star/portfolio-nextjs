@@ -15,6 +15,7 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState<'cv' | 'projects' | 'blog' | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [blogPosts, setBlogPosts] = useState<Post[]>([])
+  const router = useRouter()
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -78,24 +79,50 @@ function TabButton({ label, onClick, active }: { label: string; onClick: () => v
     </button>
   )
 }
-
 function CVSection() {
+  const router = useRouter()
+
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md border border-gray-200 dark:border-gray-700 text-left space-y-6">
-      <div className="text-sm sm:text-base text-gray-700 dark:text-gray-300 space-y-1">
-        <p><strong>Name:</strong> Serhat Aslan</p>
-        <p><strong>Title:</strong> Data Engineer & Business Analyst</p>
-        <p><strong>Location:</strong> Warsaw, Poland</p>
-        <p><strong>Email:</strong> <a href="mailto:serhataslan0009@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">serhataslan0009@gmail.com</a></p>
-        <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/serhat-aslan/" className="text-blue-600 dark:text-blue-400 hover:underline">/serhat-aslan</a></p>
-        <p><strong>Languages:</strong> Turkish (Native), English (C1), Greek (B2), Polish (A2)</p>
+    <div className="bg-white dark:bg-gray-800 px-6 py-5 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 text-left max-w-4xl mx-auto">
+      <div className="flex flex-col sm:flex-row justify-between gap-10 text-sm sm:text-[0.95rem] text-gray-700 dark:text-gray-300">
+        {/* Left - Personal Info */}
+        <div className="flex-1 space-y-1">
+          <h3 className="text-sm font-semibold text-gray-800 dark:text-white mb-1">👤 Personal Info</h3>
+          <p><strong>Name:</strong> Serhat Aslan</p>
+          <p><strong>Title:</strong> Data Engineer & Business Analyst</p>
+          <p><strong>Location:</strong> Warsaw, Poland</p>
+          <p>
+            <strong>Email:</strong>{' '}
+            <a href="mailto:serhataslan0009@gmail.com" className="text-blue-600 dark:text-blue-400 hover:underline">
+              serhataslan0009@gmail.com
+            </a>
+          </p>
+          <p>
+            <strong>LinkedIn:</strong>{' '}
+            <a href="https://www.linkedin.com/in/serhat-aslan/" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">
+              /serhat-aslan
+            </a>
+          </p>
+          <p><strong>Languages:</strong> Turkish (Native), English (C1), Greek (B2), Polish (A2)</p>
+        </div>
+
+        {/* Right - Education */}
+        <div className="flex-1 space-y-1">
+          <h3 className="text-sm font-semibold text-gray-800 dark:text-white mb-1">🎓 Education</h3>
+          <ul className="list-disc ml-5 space-y-1">
+            <li>Master’s in Data Science – PJATK, Warsaw (2024–ongoing)</li>
+            <li>B.Sc. – Çukurova University (2018–2023)</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h3 className="text-md font-semibold text-gray-800 dark:text-white mb-2">🎓 Education</h3>
-        <ul className="list-disc ml-6 space-y-1 text-gray-600 dark:text-gray-300">
-          <li>Master’s in Data Science – PJATK, Warsaw (2024–ongoing)</li>
-          <li>B.Sc. in Mechanical Engineering – Çukurova University (2018–2023)</li>
-        </ul>
+
+      <div className="text-right mt-6">
+        <button
+          onClick={() => router.push('/contact')}
+          className="inline-block px-6 py-2 text-sm border border-blue-600 text-blue-600 dark:text-blue-400 rounded-full font-medium hover:bg-blue-600 hover:text-white dark:hover:text-white transition-all duration-300"
+        >
+          CV →
+        </button>
       </div>
     </div>
   )
@@ -104,32 +131,73 @@ function CVSection() {
 function ProjectsSection() {
   const projects = [
     {
-      title: 'Cloud Migration & DWH Architecture',
-      description: 'Migrated 25+ apps to Azure, designed scalable data warehouse architecture across SAP, Salesforce, Dynamics.',
-      link: '/projects#cloud',
+      title: 'Question Answering System using RAG with Gemini AI',
+      description:
+        'A QA system built using Retrieval-Augmented Generation and Gemini AI. Integrates text generation with semantic search for relevant and precise answers.',
+      technologies: ['Python', 'FAISS', 'Gemini AI'],
+      github: 'https://github.com/wizard17-star/TEG-Project',
     },
     {
-      title: 'Forecasting Dashboard (Power BI)',
-      description: 'Developed a Power BI dashboard for demand forecasting using advanced SQL and DAX.',
-      link: '/projects#forecast',
+      title: 'Personal Portfolio Website',
+      description:
+        'Built a responsive portfolio and blog using Next.js, Tailwind CSS and MDX.',
+      technologies: ['Next.js', 'Tailwind CSS', 'MDX'],
+      github: 'https://github.com/wizard17-star/portfolio-nextjs',
     },
     {
-      title: 'Data Governance & MDM System',
-      description: 'Created a centralized data governance and masking solution for 3 continents.',
-      link: '/projects#governance',
+      title: 'Modern Data Warehouse with Azure',
+      description:
+        'Built a cloud-native data warehouse integrating SAP, Salesforce, Dynamics, and MS SQL sources using Azure Data Factory and SQL Server.',
+      technologies: ['Azure', 'Data Factory', 'SQL Server', 'DWH'],
     },
   ]
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project, i) => (
-        <div key={i} className="bg-white dark:bg-gray-800 p-5 rounded-lg shadow hover:shadow-lg transition-all border border-gray-200 dark:border-gray-700">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{project.title}</h3>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3">{project.description}</p>
-          <Link href={project.link} className="text-blue-600 hover:underline dark:text-blue-400 text-sm">See Details →</Link>
-        </div>
-      ))}
-    </div>
+    <section className="space-y-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, i) => (
+          <div
+            key={i}
+            className="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-md transition-transform transform hover:scale-[1.03] hover:shadow-xl hover:border-blue-500 duration-300"
+          >
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
+              {project.title}
+            </h3>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.technologies.map((tech, idx) => (
+                <span
+                  key={idx}
+                  className="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 text-xs font-medium px-2.5 py-0.5 rounded-full"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {project.github && (
+              <Link
+                href={project.github}
+                target="_blank"
+                className="inline-block text-sm font-medium text-blue-600 dark:text-blue-400 hover:underline hover:text-blue-700 transition-colors"
+              >
+                View on GitHub →
+              </Link>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="text-center">
+        <Link
+          href="/projects"
+          className="inline-block px-6 py-2 border border-blue-600 text-blue-600 dark:text-blue-400 rounded-full font-medium hover:bg-blue-600 hover:text-white dark:hover:text-white transition-all duration-300"
+        >
+          View All Projects →
+        </Link>
+      </div>
+    </section>
   )
 }
 
