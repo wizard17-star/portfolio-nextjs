@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white;
+}
+.btn-primary {
+  @apply px-5 py-2 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition;
+}
+
+.btn-outline {
+  @apply px-5 py-2 border border-gray-400 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition;
+}
+.nav-pill {
+  @apply px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-full text-sm text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition;
+}
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.6s ease-out;
+}
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
