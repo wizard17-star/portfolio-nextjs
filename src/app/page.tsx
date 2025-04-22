@@ -89,7 +89,7 @@ function CVSection() {
         <div className="flex-1 space-y-1">
           <h3 className="text-sm font-semibold text-gray-800 dark:text-white mb-1">👤 Personal Info</h3>
           <p><strong>Name:</strong> Serhat Aslan</p>
-          <p><strong>Title:</strong> Data Engineer & Business Analyst</p>
+          <p><strong>Title:</strong> Data Engineer </p>
           <p><strong>Location:</strong> Warsaw, Poland</p>
           <p>
             <strong>Email:</strong>{' '}
