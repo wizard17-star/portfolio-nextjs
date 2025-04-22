@@ -111,7 +111,7 @@ function CVSection() {
           <h3 className="text-sm font-semibold text-gray-800 dark:text-white mb-1">🎓 Education</h3>
           <ul className="list-disc ml-5 space-y-1">
             <li>Master’s in Data Science – PJATK, Warsaw (2024–ongoing)</li>
-            <li>B.Sc. – Çukurova University (2018–2023)</li>
+            <li>B.Sc. – Çukurova University </li>
           </ul>
         </div>
       </div>
