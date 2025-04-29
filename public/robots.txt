@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://serhataslan.vercel.app
+Host: https://serhataslan.com
 
 # Sitemaps
-Sitemap: https://serhataslan.vercel.app/sitemap.xml
+Sitemap: https://serhataslan.com/sitemap.xml
