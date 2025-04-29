@@ -4,4 +4,5 @@ module.exports = {
   generateRobotsTxt: true,
   outDir: './public',
   sitemapSize: 5000,
+  sourceDir: '.next', 
 }
