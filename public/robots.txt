@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://serhataslan.vercel.app
+
+# Sitemaps
+Sitemap: https://serhataslan.vercel.app/sitemap.xml
