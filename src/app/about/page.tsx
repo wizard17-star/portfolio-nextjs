@@ -1,88 +1,159 @@
+'use client'
+
+import ExperienceTimeline from '@/components/ExperienceTimeline'
+import SkillsShowcase from '@/components/SkillsShowcase'
+import GitHubStats from '@/components/GitHubStats'
+import SocialProof from '@/components/SocialProof'
+import { motion } from 'framer-motion'
+
 export default function AboutPage() {
   return (
-    <section className="max-w-5xl mx-auto px-4 py-16">
-      <h1 className="text-4xl font-bold mb-10 text-center text-gray-900 dark:text-white">
-        About Me
-      </h1>
+    <div className="w-full">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800 py-20">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h1 className="text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              About Me
+            </h1>
+            <p className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              I'm a <span className="font-semibold text-blue-600">Data Engineer</span> and{' '}
+              <span className="font-semibold text-blue-600">Analytics architect</span> passionate about building scalable 
+              data systems that drive business impact. With over 5 years in the field, I've helped 
+              organizations modernize their data infrastructure, optimize costs, and unlock insights.
+            </p>
+          </motion.div>
 
-      {/* Highlight Summary */}
-      <div className="bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 p-8 rounded-xl shadow mb-16 text-center">
-        <h2 className="text-2xl font-semibold text-blue-800 dark:text-blue-300 mb-2">
-          Data Engineer · Researcher · Problem Solver
-        </h2>
-        <p className="text-lg text-gray-700 dark:text-gray-300">
-          I design data systems that scale. With experience across Azure, Power BI, and SQL,
-          I turn complex problems into elegant, actionable insights.
-        </p>
-      </div>
+          {/* Quick Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="grid grid-cols-3 gap-4 mt-12 max-w-2xl mx-auto"
+          >
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-600">5+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Years exp.</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-600">50+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Dashboards</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-blue-600">25+</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">Migrations</div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-      {/* What I Do */}
-      <div className="grid sm:grid-cols-3 gap-6 mb-16 text-center">
-        <SkillCard title="Data Engineering" emoji="🧱" description="Data pipelines, ETL, DWH design, SQL optimization" />
-        <SkillCard title="Business Intelligence" emoji="📊" description="50+ Power BI dashboards, actionable KPIs" />
-        <SkillCard title="Cloud Architecture" emoji="☁️" description="25+ app migrations with Azure & DevOps tools" />
-      </div>
+      {/* Skills Showcase */}
+      <SkillsShowcase />
 
-      {/* Experience */}
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Experience</h2>
-      <div className="space-y-6 mb-16">
-        <ExperienceItem
-          role="Test Data Management Specialist"
-          company="BMO"
-          date="Feb 2025 – Present"
-          description="Contributing to secure and automated test data pipelines for enterprise systems."
-        />
-        <ExperienceItem
-          role="Business Analyst"
-          company="Köksan"
-          date="Aug 2024 – Oct 2024"
-          description="Analyzed and optimized internal reporting systems and business data structures."
-        />
-        <ExperienceItem
-          role="Data Engineer"
-          company="TEMSA"
-          date="Jan 2023 – Jun 2024"
-          description="Led cloud migration, data warehousing, and BI reporting across international operations."
-        />
-      </div>
+      {/* Experience Timeline */}
+      <ExperienceTimeline />
 
-      {/* Education */}
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Education</h2>
-      <div className="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow text-left">
-        <p className="text-lg font-semibold text-gray-900 dark:text-white">M.S. in Data Science</p>
-        <p className="text-sm text-gray-700 dark:text-gray-300 mb-2">Polish-Japanese Academy of Information Technology, 2024–</p>
-        <p className="text-sm text-gray-600 dark:text-gray-400">Specialized in software, databases, and business process engineering.</p>
-      </div>
-    </section>
-  )
-}
+      {/* GitHub Stats */}
+      <GitHubStats />
 
-function SkillCard({ title, emoji, description }: { title: string; emoji: string; description: string }) {
-  return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
-      <div className="text-4xl mb-2">{emoji}</div>
-      <h3 className="text-xl font-semibold mb-1 text-gray-900 dark:text-white">{title}</h3>
-      <p className="text-sm text-gray-600 dark:text-gray-400">{description}</p>
-    </div>
-  )
-}
+      {/* Social Proof */}
+      <SocialProof />
 
-function ExperienceItem({
-  role,
-  company,
-  date,
-  description,
-}: {
-  role: string
-  company: string
-  date: string
-  description: string
-}) {
-  return (
-    <div className="border-l-4 border-blue-600 pl-4">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{role} @ {company}</h3>
-      <p className="text-sm text-gray-500 dark:text-gray-400">{date}</p>
-      <p className="text-sm text-gray-600 dark:text-gray-300">{description}</p>
+      {/* Education Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              🎓 Education
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg border-l-4 border-blue-600"
+            >
+              <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-2 uppercase tracking-wide">
+                Master's Degree
+              </p>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                M.S. in Data Science
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Polish-Japanese Academy of Information Technology (PJATK), Warsaw
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
+                2024 – Present
+              </p>
+              <p className="text-gray-700 dark:text-gray-300">
+                Specialized in software engineering, databases, and business process engineering. 
+                Focus on data systems architecture and analytics.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg border-l-4 border-purple-600"
+            >
+              <p className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-2 uppercase tracking-wide">
+                Bachelor's Degree
+              </p>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                B.Sc. in Computer Science
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
+                Çukurova University, Turkey
+              </p>
+              <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
+                Completed
+              </p>
+              <p className="text-gray-700 dark:text-gray-300">
+                Foundational knowledge in computer science, programming, and data systems. 
+                Strong background in algorithms and software development.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-blue-600 dark:bg-blue-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold text-white mb-4">
+              Ready to work together?
+            </h2>
+            <p className="text-blue-100 mb-8 text-lg">
+              Let's discuss how I can help with your data engineering and analytics challenges.
+            </p>
+            <a
+              href="/contact"
+              className="inline-block px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl"
+            >
+              Get in touch →
+            </a>
+          </motion.div>
+        </div>
+      </section>
     </div>
   )
 }
