@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { getMediumPosts } from '../lib/getMediumPosts'
 import type { MediumPost } from '../types'
+import CTA from '@/components/CTA'
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<'cv' | 'projects' | 'blog' | null>(null)
@@ -53,7 +54,7 @@ export default function Home() {
         {activeSection === 'cv' && <CVSection />}
         {activeSection === 'projects' && <ProjectsSection />}
         {activeSection === 'blog' && <BlogSection posts={blogPosts} />}
-        <CallToAction />
+        <CTA />
         <ContactSection />
       </div>
     </main>
