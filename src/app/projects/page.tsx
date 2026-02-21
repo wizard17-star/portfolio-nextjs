@@ -3,15 +3,7 @@
 import Link from 'next/link'
 import { Github } from 'lucide-react'
 import { motion } from 'framer-motion'
-
-type Project = {
-  title: string
-  description: string
-  company?: string
-  technologies?: string[]
-  github?: string
-  link?: string
-}
+import type { Project } from '@/types'
 
 const projects: Project[] = [
   {

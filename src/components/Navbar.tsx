@@ -2,23 +2,38 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
 
 export default function Navbar() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('light')
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
+  // Prevent hydration mismatch
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') as 'light' | 'dark'
-    if (savedTheme) {
-      setTheme(savedTheme)
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark')
-    }
+    setMounted(true)
   }, [])
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
-    setTheme(newTheme)
-    document.documentElement.classList.toggle('dark', newTheme === 'dark')
-    localStorage.setItem('theme', newTheme)
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }
+
+  if (!mounted) {
+    return (
+      <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 text-gray-700 dark:text-gray-300 text-sm">
+            <span className="text-xl">↩</span>
+            <span className="hidden sm:inline">Home</span>
+          </Link>
+          <nav className="flex gap-6 text-sm font-medium">
+            <NavLink href="/projects" label="Projects" />
+            <NavLink href="/blog" label="Blog" />
+            <NavLink href="/contact" label="Contact" />
+          </nav>
+          <div className="text-xl">loading...</div>
+        </div>
+      </header>
+    )
   }
 
   return (
@@ -34,7 +49,6 @@ export default function Navbar() {
           <span className="text-xl">↩</span>
           <span className="hidden sm:inline">Home</span>
         </Link>
-        
 
         {/* Navigation Menu */}
         <nav className="flex gap-6 text-sm font-medium">
@@ -48,6 +62,7 @@ export default function Navbar() {
           onClick={toggleTheme}
           className="text-xl text-gray-500 dark:text-gray-300 hover:scale-110 transition"
           aria-label="Toggle Theme"
+          title={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
         >
           {theme === 'light' ? '🌙' : '☀️'}
         </button>
@@ -65,5 +80,4 @@ function NavLink({ href, label }: { href: string; label: string }) {
       {label}
     </Link>
   )
-  
 }

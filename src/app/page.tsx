@@ -4,17 +4,12 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { getMediumPosts } from '../lib/getMediumPosts'
-
-type Post = {
-  title: string
-  description: string
-  link: string
-}
+import type { MediumPost } from '../types'
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<'cv' | 'projects' | 'blog' | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [blogPosts, setBlogPosts] = useState<Post[]>([])
+  const [blogPosts, setBlogPosts] = useState<MediumPost[]>([])
   const router = useRouter()
 
   useEffect(() => {
@@ -201,7 +196,7 @@ function ProjectsSection() {
   )
 }
 
-function BlogSection({ posts }: { posts: Post[] }) {
+function BlogSection({ posts }: { posts: MediumPost[] }) {
   if (posts.length === 0) {
     return <div className="text-center py-10 text-gray-500 dark:text-gray-400">Loading blog posts...</div>
   }
