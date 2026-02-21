@@ -131,6 +131,7 @@ function ProjectsSection() {
         'A QA system built using Retrieval-Augmented Generation and Gemini AI. Integrates text generation with semantic search for relevant and precise answers.',
       technologies: ['Python', 'FAISS', 'Gemini AI'],
       github: 'https://github.com/wizard17-star/TEG-Project',
+      impact: 'AI-Powered Search',
     },
     {
       title: 'Personal Portfolio Website',
@@ -138,30 +139,40 @@ function ProjectsSection() {
         'Built a responsive portfolio and blog using Next.js, Tailwind CSS and MDX.',
       technologies: ['Next.js', 'Tailwind CSS', 'MDX'],
       github: 'https://github.com/wizard17-star/portfolio-nextjs',
+      impact: 'Open Source',
     },
     {
       title: 'Modern Data Warehouse with Azure',
       description:
         'Built a cloud-native data warehouse integrating SAP, Salesforce, Dynamics, and MS SQL sources using Azure Data Factory and SQL Server.',
       technologies: ['Azure', 'Data Factory', 'SQL Server', 'DWH'],
+      impact: '100M+ Records Daily',
     },
   ]
 
   return (
     <section className="space-y-10">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, i) => (
+        {projects.map((project: any, i) => (
           <div
             key={i}
-            className="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-md transition-transform transform hover:scale-[1.03] hover:shadow-xl hover:border-blue-500 duration-300"
+            className="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 shadow-md transition-transform transform hover:scale-[1.03] hover:shadow-xl hover:border-blue-500 duration-300 flex flex-col"
           >
+            {project.impact && (
+              <div className="mb-3">
+                <span className="inline-block px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-semibold rounded-full">
+                  ✓ {project.impact}
+                </span>
+              </div>
+            )}
+            
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 transition-colors">
               {project.title}
             </h3>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{project.description}</p>
+            <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 flex-grow">{project.description}</p>
 
             <div className="flex flex-wrap gap-2 mb-4">
-              {project.technologies.map((tech, idx) => (
+              {project.technologies.map((tech: string, idx: number) => (
                 <span
                   key={idx}
                   className="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-100 text-xs font-medium px-2.5 py-0.5 rounded-full"

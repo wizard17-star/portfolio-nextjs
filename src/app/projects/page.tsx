@@ -98,8 +98,8 @@ export default function ProjectsPage() {
                 </div>
 
                 {project.company && (
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
-                    <em>{project.company}</em>
+                  <p className="text-xs font-semibold bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 px-2.5 py-1 rounded-full inline-block mb-2">
+                    @ {project.company}
                   </p>
                 )}
 
