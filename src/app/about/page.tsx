@@ -1,9 +1,6 @@
 'use client'
 
-import ExperienceTimeline from '@/components/ExperienceTimeline'
 import SkillsShowcase from '@/components/SkillsShowcase'
-import GitHubStats from '@/components/GitHubStats'
-import SocialProof from '@/components/SocialProof'
 import { motion } from 'framer-motion'
 
 export default function AboutPage() {
@@ -54,82 +51,6 @@ export default function AboutPage() {
 
       {/* Skills Showcase */}
       <SkillsShowcase />
-
-      {/* Experience Timeline */}
-      <ExperienceTimeline />
-
-      {/* GitHub Stats */}
-      <GitHubStats />
-
-      {/* Social Proof */}
-      <SocialProof />
-
-      {/* Education Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              🎓 Education
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg border-l-4 border-blue-600"
-            >
-              <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-2 uppercase tracking-wide">
-                Master's Degree
-              </p>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                M.S. in Data Science
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Polish-Japanese Academy of Information Technology (PJATK), Warsaw
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
-                2024 – Present
-              </p>
-              <p className="text-gray-700 dark:text-gray-300">
-                Specialized in software engineering, databases, and business process engineering. 
-                Focus on data systems architecture and analytics.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg border-l-4 border-purple-600"
-            >
-              <p className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-2 uppercase tracking-wide">
-                Bachelor's Degree
-              </p>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                B.Sc. in Computer Science
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">
-                Çukurova University, Turkey
-              </p>
-              <p className="text-sm text-gray-500 dark:text-gray-500 mb-4">
-                Completed
-              </p>
-              <p className="text-gray-700 dark:text-gray-300">
-                Foundational knowledge in computer science, programming, and data systems. 
-                Strong background in algorithms and software development.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-16 bg-blue-600 dark:bg-blue-900">
