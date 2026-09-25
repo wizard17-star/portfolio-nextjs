@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { FileText, Github, Linkedin, Mail, MapPin } from 'lucide-react'
 import ContactForm from './ContactForm'
+import CopyEmail from '@/components/CopyEmail'
 import { site } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -10,46 +10,41 @@ export const metadata: Metadata = {
 }
 
 const channels = [
-  { icon: Mail, label: 'Email', value: site.email, href: `mailto:${site.email}` },
-  { icon: Linkedin, label: 'LinkedIn', value: 'in/serhat-aslan', href: site.links.linkedin },
-  { icon: Github, label: 'GitHub', value: 'wizard17-star', href: site.links.github },
-  { icon: FileText, label: 'Resume', value: 'Download PDF', href: site.resume },
+  { label: 'linkedin', value: 'in/serhat-aslan', href: site.links.linkedin },
+  { label: 'github', value: 'wizard17-star', href: site.links.github },
+  { label: 'resume', value: 'Resume_Serhat.pdf', href: site.resume },
 ]
 
 export default function ContactPage() {
   return (
-    <div className="container-page py-16">
-      <div className="grid gap-12 lg:grid-cols-2">
-        <header>
-          <p className="section-eyebrow">Contact</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Let&apos;s talk</h1>
-          <p className="mt-4 text-gray-600 dark:text-gray-300">
-            Recruiting for a data role, or have a data problem to solve? Email or LinkedIn is the fastest way to reach
-            me.
-          </p>
-          <p className="mt-4 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-            <MapPin size={16} aria-hidden /> {site.location}
-          </p>
+    <div className="wrap pt-16 sm:pt-24">
+      <p className="label">
+        <span className="text-accent">~/</span>contact
+      </p>
+      <h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">Let&apos;s talk</h1>
+      <p className="mt-4 max-w-xl leading-relaxed text-muted">
+        Recruiting for a data role, or have a data problem to solve? Email or LinkedIn is the fastest way to reach me.
+        Based in {site.location}.
+      </p>
 
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-            {channels.map(({ icon: Icon, label, value, href }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  {...(href.startsWith('mailto:') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
-                  className="card flex items-center gap-3 !p-4 transition hover:border-blue-300 dark:hover:border-blue-500/50"
-                >
-                  <Icon size={20} className="shrink-0 text-blue-600 dark:text-blue-400" aria-hidden />
-                  <span className="min-w-0">
-                    <span className="block text-xs text-gray-500 dark:text-gray-400">{label}</span>
-                    <span className="block truncate text-sm font-medium text-gray-900 dark:text-white">{value}</span>
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </header>
+      <div className="mt-10">
+        <CopyEmail />
+      </div>
 
+      <dl className="mt-10 divide-y divide-line border-y border-line">
+        {channels.map(({ label, value, href }) => (
+          <div key={label} className="flex gap-6 py-3">
+            <dt className="chip w-24 shrink-0 pt-0.5">{label}</dt>
+            <dd>
+              <a href={href} target="_blank" rel="noopener noreferrer" className="link">
+                {value} ↗︎
+              </a>
+            </dd>
+          </div>
+        ))}
+      </dl>
+
+      <div className="mt-16">
         <ContactForm />
       </div>
     </div>

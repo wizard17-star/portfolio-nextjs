@@ -16,18 +16,18 @@ export default function OpengraphImage() {
           flexDirection: 'column',
           justifyContent: 'center',
           padding: '80px',
-          background: 'linear-gradient(135deg, #0b1220 0%, #1e3a8a 100%)',
+          background: '#0a0a0a',
           color: 'white',
           fontFamily: 'sans-serif',
         }}
       >
-        <div style={{ fontSize: 28, color: '#93c5fd', letterSpacing: 2 }}>serhataslan.com</div>
+        <div style={{ fontSize: 28, color: '#34d399', letterSpacing: 2 }}>serhataslan.com</div>
         <div style={{ fontSize: 88, fontWeight: 800, marginTop: 24 }}>{site.name}</div>
-        <div style={{ fontSize: 44, fontWeight: 600, marginTop: 12, color: '#bfdbfe' }}>{site.role}</div>
-        <div style={{ fontSize: 30, marginTop: 36, color: '#e2e8f0' }}>
+        <div style={{ fontSize: 44, fontWeight: 600, marginTop: 12, color: '#a3a3a3' }}>{site.role}</div>
+        <div style={{ fontSize: 30, marginTop: 36, color: '#ededed' }}>
           Azure · Data Warehousing · Power BI · Microsoft Fabric
         </div>
-        <div style={{ fontSize: 26, marginTop: 16, color: '#94a3b8' }}>{site.location}</div>
+        <div style={{ fontSize: 26, marginTop: 16, color: '#737373' }}>{site.location}</div>
       </div>
     ),
     size

@@ -30,6 +30,7 @@ export const highlights = [
 ]
 
 export type Experience = {
+  summary: string
   role: string
   company: string
   location?: string
@@ -40,6 +41,7 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
+    summary: 'Test data pipelines, masking and anonymization for enterprise banking systems.',
     role: 'Test Data Management Specialist',
     company: 'BMO',
     period: '2025 – Present',
@@ -52,6 +54,7 @@ export const experience: Experience[] = [
     tech: ['SQL', 'Test Data Management', 'Data Masking', 'GDPR'],
   },
   {
+    summary: 'Reporting systems and business data structures.',
     role: 'Business Analyst',
     company: 'Köksan',
     period: 'Aug 2024 – Oct 2024',
@@ -59,6 +62,7 @@ export const experience: Experience[] = [
     tech: ['Power BI', 'SQL', 'Data Modeling'],
   },
   {
+    summary: 'Built the Azure data warehouse for 25+ applications and led their cloud migration.',
     role: 'Data Engineer',
     company: 'TEMSA',
     location: 'Istanbul, Türkiye',
@@ -73,6 +77,7 @@ export const experience: Experience[] = [
     tech: ['Azure Data Factory', 'SQL Server', 'T-SQL', 'Power BI', 'DAX', 'SSAS'],
   },
   {
+    summary: 'Requirements and delivery tracking for 10+ R&D projects.',
     role: 'R&D Project Leader',
     company: 'TEMSA',
     location: 'Istanbul, Türkiye',
@@ -83,6 +88,7 @@ export const experience: Experience[] = [
     ],
   },
   {
+    summary: 'Neural network models and stakeholder reporting.',
     role: 'Data Analyst Intern',
     company: 'Badem Information Systems',
     period: 'Sep 2021 – Dec 2021',
@@ -95,10 +101,10 @@ export const experience: Experience[] = [
 
 export const education = [
   {
-    degree: "Master's in Data Science",
+    degree: 'M.Sc. in Data Science',
     school: 'Polish-Japanese Academy of Information Technology (PJATK)',
     location: 'Warsaw',
-    period: '2024 – Present',
+    period: '2024 – 2026',
   },
   {
     degree: 'B.Sc. in Mechanical Engineering',
@@ -181,6 +187,28 @@ export const projects: Project[] = [
       'This site: a statically rendered Next.js App Router site with ISR-powered Medium feed, dark mode, SEO metadata and structured data.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     github: 'https://github.com/wizard17-star/portfolio-nextjs',
+  },
+]
+
+export type Certification = {
+  name: string
+  issuer: string
+  issued: string
+  credentialId?: string
+}
+
+export const certifications: Certification[] = [
+  {
+    name: 'Fabric Data Engineer Associate',
+    issuer: 'Microsoft',
+    issued: 'Jun 2025',
+    credentialId: 'D72B36A01DD84512',
+  },
+  {
+    name: 'Azure AI Engineer Associate',
+    issuer: 'Microsoft',
+    issued: 'Jun 2025',
+    credentialId: '468AA8CB49CAF8C7',
   },
 ]
 
