@@ -63,7 +63,7 @@ export const experience: Experience[] = [
     role: 'Data Engineer',
     company: 'TEMSA',
     location: 'Istanbul, Türkiye',
-    period: '2023 – 2024',
+    period: '2022 – 2024',
     points: [
       'Designed the data warehouse architecture and ETL processes for 25+ applications on Azure.',
       'Replaced legacy data services with Azure Data Factory, integrating SAP, SQL Server, Salesforce, Dynamics and Karmak.',
