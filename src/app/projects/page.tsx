@@ -14,19 +14,16 @@ const sorted = [...projects].sort((a, b) => Number(Boolean(b.github)) - Number(B
 
 export default function ProjectsPage() {
   return (
-    <div className="wrap pt-16 sm:pt-24">
-      <p className="label">
-        <span className="text-accent">~/</span>projects
-      </p>
-      <h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">Things I&apos;ve built</h1>
-      <p className="mt-4 max-w-xl leading-relaxed text-muted">
-        Enterprise data platforms, streaming pipelines and ML research. Open any row to see how the data flows. Source code is on{' '}
-        <a href={site.links.github} target="_blank" rel="noopener noreferrer" className="link text-fg">
+    <div className="wrap pt-16 sm:pt-20">
+      <h1 className="text-3xl font-semibold tracking-tight">Things I&apos;ve built</h1>
+      <p className="mt-3 leading-relaxed text-muted">
+        Data platforms, pipelines and ML research. Click a project to see how the data flows. Code is on{' '}
+        <a href={site.links.github} target="_blank" rel="noopener noreferrer" className="link text-black">
           GitHub
-        </a>
+       </a>
         .
       </p>
-      <div className="mt-12">
+      <div className="mt-10">
         <ProjectFilter projects={sorted} />
       </div>
     </div>

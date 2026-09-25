@@ -4,8 +4,9 @@ import { useState } from 'react'
 import ProjectList from './ProjectList'
 import type { Project, ProjectCategory } from '@/lib/site'
 
+const order: ProjectCategory[] = ['Data Engineering', 'BI', 'ML & AI', 'Web']
+
 export default function ProjectFilter({ projects }: { projects: Project[] }) {
-  const order: ProjectCategory[] = ['Data Engineering', 'BI', 'ML & AI', 'Web']
   const categories = ['All', ...order.filter((c) => projects.some((p) => p.category === c))] as const
   const [active, setActive] = useState<'All' | ProjectCategory>('All')
   const shown = active === 'All' ? projects : projects.filter((p) => p.category === active)
@@ -19,14 +20,13 @@ export default function ProjectFilter({ projects }: { projects: Project[] }) {
             type="button"
             onClick={() => setActive(c)}
             aria-pressed={active === c}
-            className={`rounded-full border px-3 py-1 font-mono text-xs transition-colors ${
-              active === c ? 'border-fg bg-fg text-bg' : 'border-line text-muted hover:text-fg'
+            className={`rounded-full border px-3 py-1 text-sm transition-colors ${
+              active === c
+                ? 'border-black bg-black text-white'
+                : 'border-line text-muted hover:border-black hover:text-black'
             }`}
           >
             {c}
-            <span className="ml-1.5 opacity-60">
-              {c === 'All' ? projects.length : projects.filter((p) => p.category === c).length}
-            </span>
           </button>
         ))}
       </div>

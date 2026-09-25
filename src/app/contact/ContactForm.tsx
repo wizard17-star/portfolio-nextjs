@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { site } from '@/lib/site'
 
 const inputClass =
-  'mt-2 w-full border-b border-line bg-transparent py-2 outline-none transition-colors focus:border-accent focus-visible:outline-none'
+  'mt-2 w-full border-b border-line bg-transparent py-2 outline-none transition-colors focus:border-black focus-visible:outline-none'
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -24,15 +24,15 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8" aria-describedby="form-note">
-      <h2 className="label">or write a quick note</h2>
+      <h2 className="text-lg font-semibold">Or write a quick note</h2>
 
       <div className="grid gap-8 sm:grid-cols-2">
         <label className="block">
-          <span className="chip">name</span>
+          <span className="text-sm text-muted">Name</span>
           <input name="name" required autoComplete="name" value={form.name} onChange={handleChange} className={inputClass} />
         </label>
         <label className="block">
-          <span className="chip">email</span>
+          <span className="text-sm text-muted">Email</span>
           <input
             name="email"
             type="email"
@@ -46,7 +46,7 @@ export default function ContactForm() {
       </div>
 
       <label className="block">
-        <span className="chip">message</span>
+        <span className="text-sm text-muted">Message</span>
         <textarea
           name="message"
           required
@@ -58,13 +58,13 @@ export default function ContactForm() {
       </label>
 
       <div className="flex flex-wrap items-center gap-4">
-        <button type="submit" className="rounded bg-fg px-5 py-2.5 font-mono text-sm text-bg transition-opacity hover:opacity-80">
-          open in email app →
+        <button type="submit" className="rounded bg-black px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-80">
+          Open in email app
         </button>
-        <p id="form-note" className="chip" aria-live="polite">
+        <p id="form-note" className="meta" aria-live="polite">
           {opened
-            ? 'your email app should open with the message pre-filled — just hit send'
-            : 'nothing is stored on this site'}
+            ? 'Your email app should open with the message pre-filled.'
+            : 'Nothing is stored on this site.'}
         </p>
       </div>
     </form>

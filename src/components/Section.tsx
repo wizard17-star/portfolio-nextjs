@@ -1,22 +1,18 @@
 export default function Section({
   id,
-  index,
   title,
   children,
   action,
 }: {
   id?: string
-  index: string
   title: string
   children: React.ReactNode
   action?: React.ReactNode
 }) {
   return (
-    <section id={id} className="wrap reveal mt-24">
-      <div className="mb-8 flex items-baseline justify-between gap-4">
-        <h2 className="label">
-          <span className="text-accent">{index}</span> / {title}
-        </h2>
+    <section id={id} className="wrap mt-16">
+      <div className="mb-4 flex items-baseline justify-between gap-4">
+        <h2 className="text-lg font-semibold">{title}</h2>
         {action}
       </div>
       {children}

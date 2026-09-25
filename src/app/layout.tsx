@@ -1,15 +1,12 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import CommandMenu from '@/components/CommandMenu'
-import { Providers } from './providers'
 import { site, experience } from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-inter' })
-const mono = JetBrains_Mono({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-mono' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -50,12 +47,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export const viewport: Viewport = {
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#fafaf9' },
-    { media: '(prefers-color-scheme: dark)', color: '#0a0a0a' },
-  ],
-}
+export const viewport: Viewport = { themeColor: '#ffffff' }
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -76,27 +68,23 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={inter.variable}>
       <body className="min-h-screen flex flex-col font-sans antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <Providers>
           <a
             href="#content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded focus:bg-fg focus:px-4 focus:py-2 focus:text-bg"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded focus:bg-black focus:px-4 focus:py-2 focus:text-white"
           >
             Skip to content
           </a>
-          <div className="scroll-progress" aria-hidden />
           <Navbar />
           <main id="content" className="flex-1">
             {children}
           </main>
           <Footer />
-          <CommandMenu />
-        </Providers>
 
         {/* Cookie-free analytics: no consent banner needed under GDPR */}
         <Analytics />

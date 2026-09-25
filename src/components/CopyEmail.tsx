@@ -17,12 +17,17 @@ export default function CopyEmail() {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-      <a href={`mailto:${site.email}`} className="link break-all text-xl font-medium sm:text-2xl">
+    <div className="flex flex-wrap items-center gap-3">
+      <a href={`mailto:${site.email}`} className="link break-all font-medium">
         {site.email}
       </a>
-      <button type="button" onClick={copy} className="chip rounded border border-line px-2 py-1 transition-colors hover:text-fg" aria-live="polite">
-        {copied ? 'copied ✓' : 'copy'}
+      <button
+        type="button"
+        onClick={copy}
+        className="rounded border border-line px-2 py-0.5 text-xs text-muted transition-colors hover:border-black hover:text-black"
+        aria-live="polite"
+      >
+        {copied ? 'Copied' : 'Copy'}
       </button>
     </div>
   )

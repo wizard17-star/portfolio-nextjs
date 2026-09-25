@@ -16,28 +16,25 @@ export default async function BlogPage() {
   const posts = await getMediumPosts()
 
   return (
-    <div className="wrap pt-16 sm:pt-24">
-      <p className="label">
-        <span className="text-accent">~/</span>writing
-      </p>
-      <h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">Writing</h1>
-      <p className="mt-4 max-w-xl leading-relaxed text-muted">
+    <div className="wrap pt-16 sm:pt-20">
+      <h1 className="text-3xl font-semibold tracking-tight">Writing</h1>
+      <p className="mt-3 leading-relaxed text-muted">
         Notes on data engineering, Microsoft Fabric and cloud, in English and Turkish — published on{' '}
-        <a href={site.links.medium} target="_blank" rel="noopener noreferrer" className="link text-fg">
+        <a href={site.links.medium} target="_blank" rel="noopener noreferrer" className="link text-black">
           Medium
-        </a>
+       </a>
         .
       </p>
 
-      <div className="mt-12">
+      <div className="mt-10">
         {posts.length > 0 ? (
           <PostList posts={posts} />
         ) : (
           <p className="text-muted">
             Articles couldn&apos;t be loaded right now.{' '}
-            <a href={site.links.medium} target="_blank" rel="noopener noreferrer" className="link text-fg">
-              Read them on Medium ↗︎
-            </a>
+            <a href={site.links.medium} target="_blank" rel="noopener noreferrer" className="link text-black">
+              Read them on Medium
+           </a>
           </p>
         )}
       </div>

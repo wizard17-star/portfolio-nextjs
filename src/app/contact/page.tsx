@@ -10,35 +10,32 @@ export const metadata: Metadata = {
 }
 
 const channels = [
-  { label: 'linkedin', value: 'in/serhat-aslan', href: site.links.linkedin },
-  { label: 'github', value: 'wizard17-star', href: site.links.github },
-  { label: 'resume', value: 'Resume_Serhat.pdf', href: site.resume },
+  { label: 'LinkedIn', value: 'in/serhat-aslan', href: site.links.linkedin },
+  { label: 'GitHub', value: 'wizard17-star', href: site.links.github },
+  { label: 'Resume', value: 'Resume_Serhat.pdf', href: site.resume },
 ]
 
 export default function ContactPage() {
   return (
-    <div className="wrap pt-16 sm:pt-24">
-      <p className="label">
-        <span className="text-accent">~/</span>contact
-      </p>
-      <h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">Let&apos;s talk</h1>
-      <p className="mt-4 max-w-xl leading-relaxed text-muted">
+    <div className="wrap pt-16 sm:pt-20">
+      <h1 className="text-3xl font-semibold tracking-tight">Let&apos;s talk</h1>
+      <p className="mt-3 leading-relaxed text-muted">
         Recruiting for a data role, or have a data problem to solve? Email or LinkedIn is the fastest way to reach me.
         Based in {site.location}.
       </p>
 
-      <div className="mt-10">
+      <div className="mt-8">
         <CopyEmail />
       </div>
 
-      <dl className="mt-10 divide-y divide-line border-y border-line">
+      <dl className="mt-8 divide-y divide-line border-y border-line text-sm">
         {channels.map(({ label, value, href }) => (
           <div key={label} className="flex gap-6 py-3">
-            <dt className="chip w-24 shrink-0 pt-0.5">{label}</dt>
+            <dt className="w-24 shrink-0 text-muted">{label}</dt>
             <dd>
               <a href={href} target="_blank" rel="noopener noreferrer" className="link">
-                {value} ↗︎
-              </a>
+                {value}
+             </a>
             </dd>
           </div>
         ))}

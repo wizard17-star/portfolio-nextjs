@@ -2,21 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design tokens — one neutral scale and a single accent */
+/* Plain black-on-white palette */
 :root {
-  --bg: 250 250 249;
-  --fg: 23 23 23;
-  --muted: 115 115 115;
+  --bg: 255 255 255;
+  --fg: 0 0 0;
+  --muted: 82 82 82;
   --line: 229 229 229;
-  --accent: 5 150 105;
-}
-
-.dark {
-  --bg: 10 10 10;
-  --fg: 237 237 237;
-  --muted: 140 140 140;
-  --line: 38 38 38;
-  --accent: 52 211 153;
 }
 
 @layer base {
@@ -30,139 +21,30 @@
   }
 
   ::selection {
-    @apply bg-accent/20;
+    @apply bg-black text-white;
   }
 
   :focus-visible {
-    @apply rounded-sm outline outline-2 outline-offset-2 outline-accent;
+    @apply rounded-sm outline outline-2 outline-offset-2 outline-black;
   }
 }
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-3xl px-5 sm:px-6;
-  }
-
-  .label {
-    @apply font-mono text-xs uppercase tracking-[0.15em] text-muted;
+    @apply mx-auto w-full max-w-2xl px-5 sm:px-6;
   }
 
   .link {
-    @apply underline decoration-line decoration-1 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent;
+    @apply underline decoration-neutral-300 underline-offset-4 transition-colors hover:decoration-black;
   }
 
-  .chip {
-    @apply font-mono text-[11px] text-muted;
+  .meta {
+    @apply text-sm text-muted;
   }
-}
-
-/* Reading progress: a 2px accent line driven by page scroll (no JS) */
-.scroll-progress {
-  @apply pointer-events-none fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-accent;
-  transform: scaleX(0);
-}
-
-/* Sections and rows ease in as they enter the viewport (no JS; ignored where unsupported) */
-@supports (animation-timeline: view()) {
-  .scroll-progress {
-    animation: grow linear both;
-    animation-timeline: scroll(root);
-  }
-
-  .reveal {
-    animation: reveal linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 60%;
-  }
-}
-
-@keyframes grow {
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes reveal {
-  from {
-    opacity: 0;
-    transform: translateY(16px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Flow diagram steps appear one after another when a project row opens */
-details[open] .flow-step {
-  animation: step-in 0.35s ease-out both;
-  animation-delay: calc(var(--i) * 90ms);
-}
-
-@keyframes step-in {
-  from {
-    opacity: 0;
-    transform: translateX(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Command menu entrance */
-.command-menu[open] {
-  animation: pop 0.15s ease-out;
-}
-
-@keyframes pop {
-  from {
-    opacity: 0;
-    transform: scale(0.97) translateY(-4px);
-  }
-}
-
-/* Hero pipeline: packets travel along each track */
-@keyframes flow {
-  from {
-    left: -6px;
-  }
-  to {
-    left: 100%;
-  }
-}
-
-.packet {
-  @apply absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-accent;
-  animation: flow 2.4s linear infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-.caret {
-  animation: blink 1.1s step-end infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  .packet,
-  .caret,
-  .reveal,
-  .scroll-progress,
-  .flow-step,
-  .command-menu {
-    animation: none !important;
-  }
-  .scroll-progress {
-    display: none;
-  }
-  .packet {
-    display: none;
   }
 }

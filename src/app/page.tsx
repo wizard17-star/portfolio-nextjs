@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Pipeline from '@/components/Pipeline'
 import Section from '@/components/Section'
 import ProjectList from '@/components/ProjectList'
 import PostList from '@/components/PostList'
 import CopyEmail from '@/components/CopyEmail'
-import LocalTime from '@/components/LocalTime'
 import { getMediumPosts } from '@/lib/getMediumPosts'
-import { certifications, education, experience, highlights, projects, site, skills } from '@/lib/site'
+import { certifications, education, experience, projects, site, skills } from '@/lib/site'
 
 export const revalidate = 3600
 
@@ -19,148 +17,120 @@ export default async function Home() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="wrap pt-16 sm:pt-24">
-        <p className="label flex items-center gap-2">
-          <span className="relative flex h-2 w-2" aria-hidden>
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60 motion-reduce:animate-none" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
-          </span>
-          open to data engineering roles
-          <span className="text-line">/</span>
-          <LocalTime />
+      {/* Intro */}
+      <section className="wrap pt-16 sm:pt-20">
+        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{site.name}</h1>
+        <p className="mt-2 text-lg">Data Engineer · {site.location}</p>
+
+        <p className="mt-6 leading-relaxed text-muted">
+          I design Azure data warehouses, build the pipelines that feed them and the Power BI reports on top. 3+ years
+          of experience: 25+ applications integrated, 50+ dashboards built, 100+ SQL queries optimized. M.Sc. in Data
+          Science, Microsoft certified in Fabric and Azure AI.
         </p>
+        <p className="mt-4 leading-relaxed text-muted">Currently open to Data Engineering roles.</p>
 
-        <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">{site.name}</h1>
-        <p className="mt-4 max-w-xl text-xl leading-snug text-muted sm:text-2xl">
-          I move data from where it&apos;s created to where it&apos;s{' '}
-          <span className="text-fg">
-            useful<span className="caret text-accent">_</span>
-          </span>
-        </p>
-
-        <p className="mt-6 max-w-xl leading-relaxed text-muted">
-          Data Engineer in Warsaw. I design Azure data warehouses, build the pipelines that feed them and the Power BI
-          reports on top — {highlights[0].value} years, {highlights[1].value} applications integrated,{' '}
-          {highlights[2].value} dashboards shipped.
-        </p>
-
-        <div className="mt-12">
-          <Pipeline />
-        </div>
-
-        <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-2 font-mono text-sm">
+        <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
           <li>
-            <a href={site.resume} target="_blank" rel="noopener" className="link">
-              resume.pdf ↗︎
-            </a>
-          </li>
-          <li>
-            <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer" className="link">
-              linkedin ↗︎
-            </a>
-          </li>
-          <li>
-            <a href={site.links.github} target="_blank" rel="noopener noreferrer" className="link">
-              github ↗︎
+            <a href={site.resume} target="_blank" rel="noopener" className="link font-medium">
+              Resume (PDF)
             </a>
           </li>
           <li>
             <a href={`mailto:${site.email}`} className="link">
-              email ↗︎
+              Email
+            </a>
+          </li>
+          <li>
+            <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer" className="link">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href={site.links.github} target="_blank" rel="noopener noreferrer" className="link">
+              GitHub
             </a>
           </li>
         </ul>
       </section>
 
       {/* Experience */}
-      <Section id="work" index="01" title="Experience">
-        <ul className="divide-y divide-line border-y border-line">
-          {experience.map((job, i) => (
+      <Section id="experience" title="Experience">
+        <ul className="divide-y divide-line border-t border-line">
+          {experience.map((job) => (
             <li key={`${job.company}-${job.role}`}>
-              <details className="group" open={i === 0}>
-                <summary className="flex cursor-pointer list-none gap-4 py-5 sm:gap-6 [&::-webkit-details-marker]:hidden">
-                  <span className="chip w-20 shrink-0 pt-1 sm:w-24">{job.period}</span>
-                  <span className="flex-1">
-                    <span className="flex items-baseline justify-between gap-4">
-                      <span className="font-medium">
-                        {job.role} <span className="text-muted">· {job.company}</span>
-                      </span>
-                      <span className="font-mono text-muted transition-transform group-open:rotate-45" aria-hidden>
-                        +
-                      </span>
-                    </span>
-                    <span className="mt-1 block text-sm text-muted">{job.summary}</span>
-                  </span>
+              <details className="group">
+                <summary className="block cursor-pointer list-none py-4 [&::-webkit-details-marker]:hidden">
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 className="font-medium">
+                      {job.role}, {job.company}
+                    </h3>
+                    <span className="meta shrink-0">{job.period}</span>
+                  </div>
+                  <p className="meta mt-1">{job.summary}</p>
                 </summary>
-                <div className="pb-6 sm:pl-[7.5rem]">
-                  <ul className="space-y-1.5 text-sm leading-relaxed text-muted">
-                    {job.points.map((p) => (
-                      <li key={p} className="before:mr-2 before:text-accent before:content-['→']">
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                  {job.tech && <p className="chip mt-3">{job.tech.join(' · ')}</p>}
-                </div>
+                <ul className="meta list-disc space-y-1 pb-5 pl-5 leading-relaxed">
+                  {job.points.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
               </details>
             </li>
           ))}
         </ul>
+        <p className="meta mt-3">Click a role to see details.</p>
       </Section>
 
       {/* Projects */}
       <Section
         id="projects"
-        index="02"
-        title="Selected projects"
+        title="Projects"
         action={
-          <Link href="/projects" className="chip link">
-            all projects →
+          <Link href="/projects" className="link text-sm">
+            All projects
           </Link>
         }
       >
         <ProjectList projects={featured} />
       </Section>
 
-      {/* Credentials */}
-      <Section id="credentials" index="03" title="Education & certifications">
-        <ul className="divide-y divide-line border-y border-line">
+      {/* Education & certifications */}
+      <Section id="education" title="Education & certifications">
+        <ul className="divide-y divide-line border-t border-line">
           {education.map((e) => (
-            <li key={e.degree} className="flex gap-4 py-4 sm:gap-6">
-              <span className="chip w-20 shrink-0 pt-0.5 sm:w-24">{e.period || '—'}</span>
+            <li key={e.degree} className="flex items-baseline justify-between gap-4 py-3">
               <span>
                 <span className="font-medium">{e.degree}</span>
-                <span className="block text-sm text-muted">{e.school}</span>
+                <span className="meta block">{e.school}</span>
               </span>
+              {e.period && <span className="meta shrink-0">{e.period}</span>}
             </li>
           ))}
           {certifications.map((c) => (
-            <li key={c.name} className="flex gap-4 py-4 sm:gap-6">
-              <span className="chip w-20 shrink-0 pt-0.5 sm:w-24">{c.issued}</span>
+            <li key={c.name} className="flex items-baseline justify-between gap-4 py-3">
               <span>
                 <span className="font-medium">
                   {c.issuer} Certified: {c.name}
                 </span>
-                {c.credentialId && <span className="chip block">credential {c.credentialId}</span>}
+                {c.credentialId && <span className="meta block">Credential ID {c.credentialId}</span>}
               </span>
+              <span className="meta shrink-0">{c.issued}</span>
             </li>
           ))}
         </ul>
       </Section>
 
       {/* Skills */}
-      <Section id="skills" index="04" title="Toolbox">
-        <dl className="space-y-4">
+      <Section id="skills" title="Skills">
+        <dl className="space-y-3 text-sm">
           {skills.map((s) => (
-            <div key={s.group} className="flex flex-col gap-1 sm:flex-row sm:gap-6">
-              <dt className="chip w-40 shrink-0 pt-0.5">{s.group}</dt>
-              <dd className="text-sm">{s.items.join(', ')}</dd>
+            <div key={s.group} className="sm:flex sm:gap-6">
+              <dt className="font-medium sm:w-44 sm:shrink-0">{s.group}</dt>
+              <dd className="text-muted">{s.items.join(', ')}</dd>
             </div>
           ))}
-          <div className="flex flex-col gap-1 sm:flex-row sm:gap-6">
-            <dt className="chip w-40 shrink-0 pt-0.5">Languages</dt>
-            <dd className="text-sm">{site.languages.join(', ')}</dd>
+          <div className="sm:flex sm:gap-6">
+            <dt className="font-medium sm:w-44 sm:shrink-0">Languages</dt>
+            <dd className="text-muted">{site.languages.join(', ')}</dd>
           </div>
         </dl>
       </Section>
@@ -169,11 +139,10 @@ export default async function Home() {
       {posts.length > 0 && (
         <Section
           id="writing"
-          index="05"
           title="Writing"
           action={
-            <Link href="/blog" className="chip link">
-              all posts →
+            <Link href="/blog" className="link text-sm">
+              All posts
             </Link>
           }
         >
@@ -182,10 +151,8 @@ export default async function Home() {
       )}
 
       {/* Contact */}
-      <Section id="contact" index={posts.length > 0 ? '06' : '05'} title="Contact">
-        <p className="mb-6 max-w-xl leading-relaxed text-muted">
-          Hiring for a data role, or have messy data that needs a home? I&apos;d like to hear about it.
-        </p>
+      <Section id="contact" title="Contact">
+        <p className="mb-3 leading-relaxed text-muted">The fastest way to reach me is email.</p>
         <CopyEmail />
       </Section>
     </>
