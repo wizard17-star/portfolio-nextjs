@@ -1,57 +1,36 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Image optimization
+  reactStrictMode: true,
+  poweredByHeader: false,
+
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'via.placeholder.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '**.medium.com',
-      },
+      { protocol: 'https', hostname: 'cdn-images-1.medium.com' },
+      { protocol: 'https', hostname: 'miro.medium.com' },
     ],
   },
 
-  // Optimization
-  compress: true,
-  productionBrowserSourceMaps: false,
-  reactStrictMode: true,
-
-  // Headers for performance
   async headers() {
     return [
       {
         source: '/:path*',
         headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=()' },
         ],
       },
     ]
   },
 
-  // Redirects for SEO
   async redirects() {
     return [
-      {
-        source: '/cv',
-        destination: '/',
-        permanent: false,
-      },
-      {
-        source: '/about',
-        destination: '/',
-        permanent: true,
-      },
+      // Handy short link to share: serhataslan.com/cv
+      { source: '/cv', destination: '/Resume_Serhat.pdf', permanent: false },
+      { source: '/resume', destination: '/Resume_Serhat.pdf', permanent: false },
+      { source: '/about', destination: '/#about', permanent: false },
     ]
   },
 }

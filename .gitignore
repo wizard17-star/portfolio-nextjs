@@ -15,3 +15,4 @@ git-filter-repo.py
 .cache/
 dist/
 build/
+*.tsbuildinfo

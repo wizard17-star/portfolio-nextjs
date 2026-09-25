@@ -1,43 +1,34 @@
-# Serhat Aslan | Portfolio Website
+# Serhat Aslan | Portfolio
 
-This is a personal portfolio and blog website built with **Next.js 15** and **Tailwind CSS**.  
-It showcases my projects, blog posts, and contact information.
+Personal portfolio of Serhat Aslan, Data Engineer — live at **[serhataslan.com](https://www.serhataslan.com)**.
 
-## ✨ Features
+Built with **Next.js 15 (App Router)**, **TypeScript** and **Tailwind CSS**, deployed on Vercel.
 
-- Dark/light theme toggle with `localStorage`
-- Responsive and modern design
-- Project and blog section previews on homepage
-- Contact section
-- Google Analytics integration
+## Features
 
-## 🛠️ Technologies Used
+- Statically rendered pages; Medium articles fetched server-side and revalidated hourly (ISR)
+- All profile content in one place: [`src/lib/site.ts`](src/lib/site.ts) — keep it in sync with the resume PDF
+- SEO: per-page metadata and canonical URLs, generated `sitemap.xml` / `robots.txt`, Open Graph image, JSON-LD `Person` data
+- Light/dark theme (follows the system by default), accessible navigation and forms
+- Short links: `/cv` and `/resume` open the resume PDF
 
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- TypeScript
-
-## 🚀 Getting Started
+## Getting started
 
 ```bash
 npm install
 npm run dev
 ```
 
-## 🧱 Build for Production
+## Updating content
 
-```bash
-npm run build
-npm run start
-```
+| What | Where |
+| --- | --- |
+| Experience, projects, skills, links | `src/lib/site.ts` |
+| Resume PDF | `public/Resume_Serhat.pdf` |
+| Social preview image | `src/app/opengraph-image.tsx` |
 
-## 📁 Project Structure
+## Project structure
 
-- `src/app`: Routes and pages
-- `src/components`: Reusable UI components
-- `public/`: Static files (images, resume)
-- `tailwind.config.ts`: Tailwind CSS configuration
-
-## 📬 Contact
-
-Feel free to reach out via the contact page or [LinkedIn](https://www.linkedin.com/in/serhat-aslan/)
+- `src/app` — routes (`/`, `/projects`, `/blog`, `/contact`), metadata, sitemap, robots
+- `src/components` — Navbar, Footer, cards
+- `src/lib` — site content and the Medium feed loader

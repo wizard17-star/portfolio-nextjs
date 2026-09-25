@@ -1,36 +1,35 @@
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
 import Link from 'next/link'
+import { Github, Linkedin, Mail } from 'lucide-react'
+import { site } from '@/lib/site'
+
+const socials = [
+  { href: site.links.linkedin, label: 'LinkedIn', icon: Linkedin },
+  { href: site.links.github, label: 'GitHub', icon: Github },
+  { href: `mailto:${site.email}`, label: 'Email', icon: Mail },
+]
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-16 px-6 py-6">
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex flex-col md:flex-row md:items-center text-sm text-gray-500 dark:text-gray-400 gap-2 md:gap-4 text-center md:text-left">
-          <p>&copy; {new Date().getFullYear()} <span className="text-gray-700 dark:text-white">Serhat Aslan</span></p>
-          <p className="hidden md:inline">Data Engineer & Researcher</p>
-        </div>
+    <footer className="mt-16 border-t border-gray-200 dark:border-gray-800">
+      <div className="container-page flex flex-col items-center justify-between gap-4 py-8 text-sm text-gray-500 dark:text-gray-400 md:flex-row">
+        <p>
+          © {new Date().getFullYear()} {site.name} · {site.role} · {site.location}
+        </p>
 
-        <div className="flex items-center gap-4">
-          <a
-            href="https://github.com/wizard17-star"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
-          >
-            <FaGithub size={18} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/serhat-aslan"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
-          >
-            <FaLinkedin size={18} />
-          </a>
-          <Link
-            href="/contact"
-            className="text-sm text-blue-600 hover:underline dark:text-blue-400"
-          >
+        <div className="flex items-center gap-1">
+          {socials.map(({ href, label, icon: Icon }) => (
+            <a
+              key={label}
+              href={href}
+              {...(href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              aria-label={label}
+              title={label}
+              className="rounded-lg p-2 transition hover:bg-gray-100 hover:text-blue-600 dark:hover:bg-gray-800 dark:hover:text-blue-400"
+            >
+              <Icon size={18} aria-hidden />
+            </a>
+          ))}
+          <Link href="/contact" className="ml-2 font-medium text-blue-600 hover:underline dark:text-blue-400">
             Contact
           </Link>
         </div>

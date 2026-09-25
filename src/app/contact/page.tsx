@@ -1,160 +1,57 @@
-'use client'
+import type { Metadata } from 'next'
+import { FileText, Github, Linkedin, Mail, MapPin } from 'lucide-react'
+import ContactForm from './ContactForm'
+import { site } from '@/lib/site'
 
-import {
-  Mail,
-  Github,
-  User,
-  MessageSquare,
-  FileText
-} from 'lucide-react'
-
-import { FaLinkedin } from 'react-icons/fa'
-import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-
-export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
-  const [showSuccessModal, setShowSuccessModal] = useState(false)
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    const mailtoLink = `mailto:serhataslan0009@gmail.com?subject=Message from ${encodeURIComponent(form.name)}&body=${encodeURIComponent(
-      form.message + '\n\nSender email: ' + form.email
-    )}`
-    window.location.href = mailtoLink
-    setSubmitted(true)
-    setShowSuccessModal(true)
-  }
-
-  return (
-    <motion.section
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="w-full bg-white dark:bg-gray-900 py-16 px-6"
-    >
-      <div className="max-w-2xl mx-auto text-center">
-        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">📬 Let's Talk!</h1>
-        <p className="text-lg text-gray-700 dark:text-gray-300 mb-10">
-          Feel free to reach out via email, social media, or send a quick message below.
-        </p>
-
-        {/* Quick Contact Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
-          <ContactItem
-            icon={<Mail size={20} />}
-            label="serhataslan0009@gmail.com"
-            link="mailto:serhataslan0009@gmail.com"
-          />
-          <ContactItem
-            icon={<FaLinkedin size={20} />}
-            label="https://www.linkedin.com/in/serhat-aslan"
-            link="https://www.linkedin.com/in/serhat-aslan"
-          />
-          <ContactItem
-            icon={<Github size={20} />}
-            label="https://github.com/wizard17-star"
-            link="https://github.com/wizard17-star"
-          />
-          <ContactItem
-            icon={<FileText size={20} />}
-            label="Download My CV (PDF)"
-            link="/Resume_Serhat.pdf"
-          />
-        </div>
-
-        {/* Message Form */}
-        <form onSubmit={handleSubmit} className="space-y-4 text-left">
-          <div className="flex flex-col">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
-            <div className="flex items-center gap-2">
-              <User size={16} className="text-gray-400" />
-              <input
-                required
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                className="flex-1 px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Your Email</label>
-            <div className="flex items-center gap-2">
-              <Mail size={16} className="text-gray-400" />
-              <input
-                required
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                className="flex-1 px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          </div>
-
-          <div className="flex flex-col">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Message</label>
-            <div className="flex items-start gap-2">
-              <MessageSquare size={16} className="text-gray-400 mt-2" />
-              <textarea
-                required
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                rows={5}
-                className="flex-1 px-4 py-2 rounded-md bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full mt-4 bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition font-medium"
-          >
-            Send Message
-          </button>
-        </form>
-      </div>
-
-      {/* Success Modal */}
-      <AnimatePresence>
-        {showSuccessModal && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            className="fixed bottom-5 right-5 bg-green-100 dark:bg-green-800 text-green-800 dark:text-white px-4 py-3 rounded shadow-lg"
-          >
-            ✅ Message sent! Opening your mail app...
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.section>
-  )
+export const metadata: Metadata = {
+  title: 'Contact',
+  description: 'Get in touch with Serhat Aslan, Data Engineer based in Warsaw, Poland — email, LinkedIn, GitHub or resume.',
+  alternates: { canonical: '/contact' },
 }
 
-function ContactItem({
-  icon,
-  label,
-  link
-}: {
-  icon: React.ReactNode
-  label: string
-  link: string
-}) {
+const channels = [
+  { icon: Mail, label: 'Email', value: site.email, href: `mailto:${site.email}` },
+  { icon: Linkedin, label: 'LinkedIn', value: 'in/serhat-aslan', href: site.links.linkedin },
+  { icon: Github, label: 'GitHub', value: 'wizard17-star', href: site.links.github },
+  { icon: FileText, label: 'Resume', value: 'Download PDF', href: site.resume },
+]
+
+export default function ContactPage() {
   return (
-    <div className="flex items-center gap-3 text-gray-800 dark:text-gray-200 transform hover:-translate-y-1 hover:scale-105 transition justify-start break-all">
-      <span className="text-blue-600 dark:text-blue-400">{icon}</span>
-      <a href={link} target="_blank" rel="noopener noreferrer" className="hover:underline text-sm sm:text-base">
-        {label}
-      </a>
+    <div className="container-page py-16">
+      <div className="grid gap-12 lg:grid-cols-2">
+        <header>
+          <p className="section-eyebrow">Contact</p>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">Let&apos;s talk</h1>
+          <p className="mt-4 text-gray-600 dark:text-gray-300">
+            Recruiting for a data role, or have a data problem to solve? Email or LinkedIn is the fastest way to reach
+            me.
+          </p>
+          <p className="mt-4 flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+            <MapPin size={16} aria-hidden /> {site.location}
+          </p>
+
+          <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            {channels.map(({ icon: Icon, label, value, href }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  {...(href.startsWith('mailto:') ? {} : { target: '_blank', rel: 'noopener noreferrer' })}
+                  className="card flex items-center gap-3 !p-4 transition hover:border-blue-300 dark:hover:border-blue-500/50"
+                >
+                  <Icon size={20} className="shrink-0 text-blue-600 dark:text-blue-400" aria-hidden />
+                  <span className="min-w-0">
+                    <span className="block text-xs text-gray-500 dark:text-gray-400">{label}</span>
+                    <span className="block truncate text-sm font-medium text-gray-900 dark:text-white">{value}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </header>
+
+        <ContactForm />
+      </div>
     </div>
   )
 }

@@ -1,55 +1,110 @@
 import './globals.css'
-import type { Metadata } from 'next'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
+import { Inter } from 'next/font/google'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
 import { Providers } from './providers'
+import { site, experience } from '@/lib/site'
+
+const inter = Inter({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-inter' })
 
 export const metadata: Metadata = {
-  title: 'Serhat Aslan | Portfolio',
-  description: 'Personal website and blog of Serhat Aslan, Data Engineer',
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} | ${site.headline}`,
+    template: `%s | ${site.name}`,
+  },
+  description: site.description,
+  applicationName: site.name,
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
+  keywords: [
+    'Data Engineer',
+    'Azure Data Factory',
+    'Data Warehouse',
+    'Power BI',
+    'Microsoft Fabric',
+    'ETL',
+    'SQL Server',
+    'Warsaw',
+    'Poland',
+    site.name,
+  ],
+  openGraph: {
+    type: 'profile',
+    siteName: site.name,
+    title: `${site.name} | ${site.headline}`,
+    description: site.description,
+    locale: 'en_US',
+    firstName: 'Serhat',
+    lastName: 'Aslan',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${site.name} | ${site.headline}`,
+    description: site.description,
+  },
+  robots: { index: true, follow: true },
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#111827' },
+  ],
+}
+
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: site.url,
+  email: `mailto:${site.email}`,
+  jobTitle: site.role,
+  worksFor: { '@type': 'Organization', name: experience[0].company },
+  address: { '@type': 'PostalAddress', addressLocality: 'Warsaw', addressCountry: 'PL' },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Polish-Japanese Academy of Information Technology' },
+    { '@type': 'CollegeOrUniversity', name: 'Çukurova University' },
+  ],
+  knowsAbout: ['Data Engineering', 'Azure Data Factory', 'Data Warehousing', 'Power BI', 'Microsoft Fabric', 'SQL'],
+  sameAs: [site.links.linkedin, site.links.github, site.links.medium],
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <head>
-        <title>Serhat Aslan | Portfolio</title>
-        <meta name="description" content="Personal website and blog of Serhat Aslan, Data Engineer" />
-
-        {/* Open Graph */}
-        <meta property="og:title" content="Serhat Aslan | Portfolio" />
-        <meta property="og:description" content="Personal website and blog of Serhat Aslan, Data Engineer" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.serhataslan.com" />
-        <meta property="og:image" content="/og-image.png" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Serhat Aslan | Portfolio" />
-        <meta name="twitter:description" content="Personal website and blog of Serhat Aslan, Data Engineer" />
-        <meta name="twitter:image" content="/og-image.png" />
-
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EENPM0GTF8"></script>
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-EENPM0GTF8', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }} />
-      </head>
-      <body className="min-h-screen flex flex-col bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+    <html lang="en" className={inter.variable} suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <Providers>
+          <a
+            href="#content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
+          >
+            Skip to content
+          </a>
           <Navbar />
-          <main className="flex-1 container mx-auto px-4 py-8">
+          <main id="content" className="flex-1">
             {children}
           </main>
           <Footer />
         </Providers>
+
+        {process.env.NODE_ENV === 'production' && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`} strategy="afterInteractive" />
+            <Script id="ga-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${site.gaId}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   )
