@@ -30,7 +30,7 @@ export default function Home() {
         </p>
         <p className="rise mt-5 max-w-lg text-lg leading-relaxed text-slate-600" style={delay(0.24)}>
           Azure data warehouses, ETL pipelines and Power BI — 3+ years turning enterprise data into decisions. M.Sc.
-          in Data Science, 2× Microsoft certified.
+          in Data Science; Microsoft Fabric and Azure AI certifications.
         </p>
 
         <div className="rise mt-8 flex flex-wrap gap-3" style={delay(0.32)}>

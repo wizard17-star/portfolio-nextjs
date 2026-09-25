@@ -1,4 +1,4 @@
-import { certifications, highlights } from '@/lib/site'
+import { highlights } from '@/lib/site'
 
 const query = 'SELECT metric, value FROM serhat.career;'
 
@@ -7,7 +7,7 @@ const rows: [string, string][] = [
   ['apps_integrated', highlights[1].value],
   ['dashboards_built', highlights[2].value],
   ['queries_optimized', highlights[3].value],
-  ['certifications', `${certifications.length}× Microsoft`],
+  ['certifications', 'Fabric DE, Azure AI, ITIL'],
   ['degree', 'M.Sc. Data Science'],
 ]
 

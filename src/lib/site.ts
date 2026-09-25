@@ -215,21 +215,41 @@ export type Certification = {
   name: string
   issuer: string
   issued: string
+  expired?: string
   credentialId?: string
+  url?: string
 }
+
+const learn = (path: string) => `https://learn.microsoft.com/api/credentials/share/en-us/${path}`
 
 export const certifications: Certification[] = [
   {
-    name: 'Fabric Data Engineer Associate',
+    name: 'Microsoft Certified: Fabric Data Engineer Associate',
     issuer: 'Microsoft',
     issued: 'Jun 2025',
+    expired: 'Jun 2026',
     credentialId: 'D72B36A01DD84512',
+    url: learn('SerhatAslan-6535/D72B36A01DD84512'),
   },
   {
-    name: 'Azure AI Engineer Associate',
+    name: 'Microsoft Certified: Azure AI Engineer Associate',
     issuer: 'Microsoft',
     issued: 'Jun 2025',
+    expired: 'Jun 2026',
     credentialId: '468AA8CB49CAF8C7',
+    url: learn('SerhatAslan-8258/468AA8CB49CAF8C7'),
+  },
+  {
+    name: 'Implement a data warehouse in Microsoft Fabric',
+    issuer: 'Microsoft',
+    issued: 'May 2024',
+    credentialId: '6487E34CD910364B',
+    url: learn('SerhatAslan-7152/6487E34CD910364B'),
+  },
+  {
+    name: 'ITIL® Foundation',
+    issuer: 'Kalayci.com',
+    issued: 'Dec 2023',
   },
 ]
 

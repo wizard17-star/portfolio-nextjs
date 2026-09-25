@@ -17,7 +17,7 @@ export default function AboutPage() {
         <p className="mt-3 max-w-2xl text-lg leading-relaxed text-slate-600">
           I&apos;m a Data Engineer with 3+ years of experience in data engineering and business analysis. I designed
           the Azure data warehouse and ETL for 25+ applications at TEMSA, led their cloud migration and built 50+ Power
-          BI dashboards. I hold an M.Sc. in Data Science from PJATK and two Microsoft certifications.
+          BI dashboards. I hold an M.Sc. in Data Science from PJATK, plus Microsoft Fabric, Azure AI and ITIL certifications.
         </p>
         <a href={site.resume} target="_blank" rel="noopener" className="btn-primary mt-6">
           Download CV
@@ -76,11 +76,21 @@ export default function AboutPage() {
             </div>
           ))}
           {certifications.map((c) => (
-            <div key={c.name} className="card">
-              <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">{c.issuer} Certified</p>
+            <div key={c.name} className="card flex flex-col">
+              <p className="text-xs font-semibold uppercase tracking-wider text-blue-600">
+                Certification · {c.issuer}
+              </p>
               <h3 className="mt-2 font-bold">{c.name}</h3>
-              <p className="mt-1 text-sm text-slate-500">Issued {c.issued}</p>
+              <p className="mt-1 text-sm text-slate-500">
+                Issued {c.issued}
+                {c.expired && ` · Expired ${c.expired}`}
+              </p>
               {c.credentialId && <p className="mt-1 font-mono text-xs text-slate-500">ID {c.credentialId}</p>}
+              {c.url && (
+                <a href={c.url} target="_blank" rel="noopener noreferrer" className="link mt-3 text-sm">
+                  Verify credential →
+                </a>
+              )}
             </div>
           ))}
         </div>
