@@ -83,7 +83,6 @@ export default function AboutPage() {
               <h3 className="mt-2 font-bold">{c.name}</h3>
               <p className="mt-1 text-sm text-slate-500">
                 Issued {c.issued}
-                {c.expired && ` · Expired ${c.expired}`}
               </p>
               {c.credentialId && <p className="mt-1 font-mono text-xs text-slate-500">ID {c.credentialId}</p>}
               {c.url && (

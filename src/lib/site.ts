@@ -215,7 +215,6 @@ export type Certification = {
   name: string
   issuer: string
   issued: string
-  expired?: string
   credentialId?: string
   url?: string
 }
@@ -227,7 +226,6 @@ export const certifications: Certification[] = [
     name: 'Microsoft Certified: Fabric Data Engineer Associate',
     issuer: 'Microsoft',
     issued: 'Jun 2025',
-    expired: 'Jun 2026',
     credentialId: 'D72B36A01DD84512',
     url: learn('SerhatAslan-6535/D72B36A01DD84512'),
   },
@@ -235,7 +233,6 @@ export const certifications: Certification[] = [
     name: 'Microsoft Certified: Azure AI Engineer Associate',
     issuer: 'Microsoft',
     issued: 'Jun 2025',
-    expired: 'Jun 2026',
     credentialId: '468AA8CB49CAF8C7',
     url: learn('SerhatAslan-8258/468AA8CB49CAF8C7'),
   },
