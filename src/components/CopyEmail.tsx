@@ -18,16 +18,18 @@ export default function CopyEmail() {
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <a href={`mailto:${site.email}`} className="link break-all font-medium">
+      <a href={`mailto:${site.email}`} className="break-all text-lg font-semibold text-blue-600 hover:underline">
         {site.email}
       </a>
       <button
         type="button"
         onClick={copy}
-        className="rounded border border-line px-2 py-0.5 text-xs text-muted transition-colors hover:border-black hover:text-black"
+        className={`rounded-lg px-3 py-1 text-xs font-semibold transition ${
+          copied ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+        }`}
         aria-live="polite"
       >
-        {copied ? 'Copied' : 'Copy'}
+        {copied ? 'Copied ✓' : 'Copy'}
       </button>
     </div>
   )

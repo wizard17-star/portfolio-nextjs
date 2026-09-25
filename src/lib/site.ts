@@ -205,7 +205,7 @@ export const projects: Project[] = [
     title: 'Personal Portfolio Website',
     category: 'Web',
     description:
-      'This site: a statically rendered Next.js App Router site with ISR-powered Medium feed, dark mode, SEO metadata and structured data.',
+      'This site: a statically rendered Next.js App Router site with ISR-powered Medium feed, CSS-only animations, SEO metadata and structured data.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     github: 'https://github.com/wizard17-star/portfolio-nextjs',
   },

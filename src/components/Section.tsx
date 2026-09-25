@@ -2,19 +2,16 @@ export default function Section({
   id,
   title,
   children,
-  action,
+  delay = 0,
 }: {
   id?: string
   title: string
   children: React.ReactNode
-  action?: React.ReactNode
+  delay?: number
 }) {
   return (
-    <section id={id} className="wrap mt-16">
-      <div className="mb-4 flex items-baseline justify-between gap-4">
-        <h2 className="text-lg font-semibold">{title}</h2>
-        {action}
-      </div>
+    <section id={id} className="rise mt-12" style={{ '--d': `${delay}s` } as React.CSSProperties}>
+      <h2 className="mb-4 text-xl font-bold tracking-tight">{title}</h2>
       {children}
     </section>
   )

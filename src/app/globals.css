@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Plain black-on-white palette */
-:root {
-  --bg: 255 255 255;
-  --fg: 0 0 0;
-  --muted: 82 82 82;
-  --line: 229 229 229;
-}
-
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -17,34 +9,121 @@
   }
 
   body {
-    @apply bg-bg text-fg;
-  }
-
-  ::selection {
-    @apply bg-black text-white;
+    @apply bg-canvas text-slate-900;
   }
 
   :focus-visible {
-    @apply rounded-sm outline outline-2 outline-offset-2 outline-black;
+    @apply rounded-sm outline outline-2 outline-offset-2 outline-blue-600;
   }
 }
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-2xl px-5 sm:px-6;
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .card {
+    @apply rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.06)] ring-1 ring-slate-900/5;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition duration-200 hover:-translate-y-0.5;
+  }
+
+  .btn-primary {
+    @apply btn bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-slate-900 shadow-[0_1px_2px_rgba(15,23,42,0.12)] hover:shadow-md;
   }
 
   .link {
-    @apply underline decoration-neutral-300 underline-offset-4 transition-colors hover:decoration-black;
+    @apply font-medium text-blue-600 underline-offset-4 hover:underline;
   }
 
-  .meta {
-    @apply text-sm text-muted;
+  .tag {
+    @apply rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600;
   }
+
+  .page-title {
+    @apply text-3xl font-extrabold tracking-tight sm:text-4xl;
+  }
+}
+
+/* Entrance: content rises in gently, staggered with --d */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0s);
+}
+
+/* Terminal: the query types out, then result rows appear one by one */
+@keyframes type {
+  from {
+    width: 0;
+  }
+}
+
+/* Typing needs a fixed width in ch; on narrow screens the line simply wraps */
+@media (min-width: 640px) {
+  .typing {
+    display: inline-block;
+    width: calc(var(--chars) * 1ch);
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    animation: type 1.4s steps(var(--chars)) 0.5s both;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.row-in {
+  animation: appear 0.35s ease-out both;
+  animation-delay: calc(2s + var(--i) * 0.18s);
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor {
+  animation: blink 1s steps(1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .rise,
+  .typing,
+  .row-in,
+  .cursor {
+    animation: none !important;
+  }
+  .btn {
+    @apply hover:translate-y-0;
   }
 }

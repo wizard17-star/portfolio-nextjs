@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { site } from '@/lib/site'
 
 const inputClass =
-  'mt-2 w-full border-b border-line bg-transparent py-2 outline-none transition-colors focus:border-black focus-visible:outline-none'
+  'mt-1.5 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 transition focus:border-blue-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus-visible:outline-none'
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -23,16 +23,16 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8" aria-describedby="form-note">
-      <h2 className="text-lg font-semibold">Or write a quick note</h2>
+    <form onSubmit={handleSubmit} className="card space-y-4 sm:!p-8" aria-describedby="form-note">
+      <h2 className="text-lg font-bold">Send a message</h2>
 
-      <div className="grid gap-8 sm:grid-cols-2">
-        <label className="block">
-          <span className="text-sm text-muted">Name</span>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block text-sm font-medium text-slate-700">
+          Name
           <input name="name" required autoComplete="name" value={form.name} onChange={handleChange} className={inputClass} />
         </label>
-        <label className="block">
-          <span className="text-sm text-muted">Email</span>
+        <label className="block text-sm font-medium text-slate-700">
+          Email
           <input
             name="email"
             type="email"
@@ -45,28 +45,26 @@ export default function ContactForm() {
         </label>
       </div>
 
-      <label className="block">
-        <span className="text-sm text-muted">Message</span>
+      <label className="block text-sm font-medium text-slate-700">
+        Message
         <textarea
           name="message"
           required
-          rows={4}
+          rows={5}
           value={form.message}
           onChange={handleChange}
           className={`${inputClass} resize-none`}
         />
       </label>
 
-      <div className="flex flex-wrap items-center gap-4">
-        <button type="submit" className="rounded bg-black px-5 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-80">
-          Open in email app
-        </button>
-        <p id="form-note" className="meta" aria-live="polite">
-          {opened
-            ? 'Your email app should open with the message pre-filled.'
-            : 'Nothing is stored on this site.'}
-        </p>
-      </div>
+      <button type="submit" className="btn-primary w-full">
+        Open in my email app
+      </button>
+      <p id="form-note" className="text-center text-xs text-slate-500" aria-live="polite">
+        {opened
+          ? 'Your email app should open with the message pre-filled — just hit send.'
+          : 'Nothing is stored on this site.'}
+      </p>
     </form>
   )
 }

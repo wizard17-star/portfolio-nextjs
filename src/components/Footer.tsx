@@ -8,14 +8,14 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="wrap mt-20 flex flex-col gap-3 border-t border-line py-8 text-sm text-muted sm:flex-row sm:justify-between">
+    <footer className="wrap flex flex-col gap-2 py-6 text-sm text-slate-500 sm:flex-row sm:justify-between">
       <p>
-        © {new Date().getFullYear()} {site.name}
+        © {new Date().getFullYear()} {site.name} · {site.location}
       </p>
       <ul className="flex gap-5">
         {socials.map(({ href, label }) => (
           <li key={label}>
-            <a href={href} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-black">
+            <a href={href} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-slate-900">
               {label}
             </a>
           </li>

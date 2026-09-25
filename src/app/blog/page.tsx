@@ -16,25 +16,27 @@ export default async function BlogPage() {
   const posts = await getMediumPosts()
 
   return (
-    <div className="wrap pt-16 sm:pt-20">
-      <h1 className="text-3xl font-semibold tracking-tight">Writing</h1>
-      <p className="mt-3 leading-relaxed text-muted">
-        Notes on data engineering, Microsoft Fabric and cloud, in English and Turkish — published on{' '}
-        <a href={site.links.medium} target="_blank" rel="noopener noreferrer" className="link text-black">
-          Medium
-       </a>
-        .
-      </p>
+    <div className="wrap max-w-4xl py-10 sm:py-14">
+      <header className="rise">
+        <h1 className="page-title">Writing</h1>
+        <p className="mt-3 text-lg leading-relaxed text-slate-600">
+          Notes on data engineering, Microsoft Fabric and cloud, in English and Turkish — published on{' '}
+          <a href={site.links.medium} target="_blank" rel="noopener noreferrer" className="link">
+            Medium
+          </a>
+          .
+        </p>
+      </header>
 
-      <div className="mt-10">
+      <div className="rise mt-8" style={{ '--d': '0.1s' } as React.CSSProperties}>
         {posts.length > 0 ? (
           <PostList posts={posts} />
         ) : (
-          <p className="text-muted">
+          <p className="card text-slate-600">
             Articles couldn&apos;t be loaded right now.{' '}
-            <a href={site.links.medium} target="_blank" rel="noopener noreferrer" className="link text-black">
-              Read them on Medium
-           </a>
+            <a href={site.links.medium} target="_blank" rel="noopener noreferrer" className="link">
+              Read them on Medium →
+            </a>
           </p>
         )}
       </div>

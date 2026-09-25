@@ -9,21 +9,23 @@ export const metadata: Metadata = {
   alternates: { canonical: '/projects' },
 }
 
-// Projects with public source code first, keeping the original order otherwise
-const sorted = [...projects].sort((a, b) => Number(Boolean(b.github)) - Number(Boolean(a.github)))
+// Featured projects first, keeping the original order otherwise
+const sorted = [...projects].sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)))
 
 export default function ProjectsPage() {
   return (
-    <div className="wrap pt-16 sm:pt-20">
-      <h1 className="text-3xl font-semibold tracking-tight">Things I&apos;ve built</h1>
-      <p className="mt-3 leading-relaxed text-muted">
-        Data platforms, pipelines and ML research. Click a project to see how the data flows. Code is on{' '}
-        <a href={site.links.github} target="_blank" rel="noopener noreferrer" className="link text-black">
-          GitHub
-       </a>
-        .
-      </p>
-      <div className="mt-10">
+    <div className="wrap py-10 sm:py-14">
+      <header className="rise max-w-2xl">
+        <h1 className="page-title">Projects</h1>
+        <p className="mt-3 text-lg leading-relaxed text-slate-600">
+          Data platforms, streaming pipelines and ML research — each card shows how the data flows. Code is on{' '}
+          <a href={site.links.github} target="_blank" rel="noopener noreferrer" className="link">
+            GitHub
+          </a>
+          .
+        </p>
+      </header>
+      <div className="mt-8">
         <ProjectFilter projects={sorted} />
       </div>
     </div>

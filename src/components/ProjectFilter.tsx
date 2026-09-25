@@ -20,17 +20,18 @@ export default function ProjectFilter({ projects }: { projects: Project[] }) {
             type="button"
             onClick={() => setActive(c)}
             aria-pressed={active === c}
-            className={`rounded-full border px-3 py-1 text-sm transition-colors ${
+            className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
               active === c
-                ? 'border-black bg-black text-white'
-                : 'border-line text-muted hover:border-black hover:text-black'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'bg-white text-slate-600 shadow-[0_1px_2px_rgba(15,23,42,0.08)] hover:text-slate-900'
             }`}
           >
             {c}
           </button>
         ))}
       </div>
-      <ProjectList projects={shown} />
+      {/* key forces a remount so the entrance animation replays on filter change */}
+      <ProjectList key={active} projects={shown} />
     </>
   )
 }

@@ -1,160 +1,54 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Section from '@/components/Section'
-import ProjectList from '@/components/ProjectList'
-import PostList from '@/components/PostList'
-import CopyEmail from '@/components/CopyEmail'
-import { getMediumPosts } from '@/lib/getMediumPosts'
-import { certifications, education, experience, projects, site, skills } from '@/lib/site'
-
-export const revalidate = 3600
+import Terminal from '@/components/Terminal'
+import { site } from '@/lib/site'
 
 export const metadata: Metadata = { alternates: { canonical: '/' } }
 
-export default async function Home() {
-  const posts = (await getMediumPosts()).slice(0, 4)
-  const featured = projects.filter((p) => p.featured)
+const delay = (s: number) => ({ '--d': `${s}s` }) as React.CSSProperties
 
+export default function Home() {
   return (
-    <>
-      {/* Intro */}
-      <section className="wrap pt-16 sm:pt-20">
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{site.name}</h1>
-        <p className="mt-2 text-lg">Data Engineer · {site.location}</p>
-
-        <p className="mt-6 leading-relaxed text-muted">
-          I design Azure data warehouses, build the pipelines that feed them and the Power BI reports on top. 3+ years
-          of experience: 25+ applications integrated, 50+ dashboards built, 100+ SQL queries optimized. M.Sc. in Data
-          Science, Microsoft certified in Fabric and Azure AI.
-        </p>
-        <p className="mt-4 leading-relaxed text-muted">Currently open to Data Engineering roles.</p>
-
-        <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
-          <li>
-            <a href={site.resume} target="_blank" rel="noopener" className="link font-medium">
-              Resume (PDF)
-            </a>
-          </li>
-          <li>
-            <a href={`mailto:${site.email}`} className="link">
-              Email
-            </a>
-          </li>
-          <li>
-            <a href={site.links.linkedin} target="_blank" rel="noopener noreferrer" className="link">
-              LinkedIn
-            </a>
-          </li>
-          <li>
-            <a href={site.links.github} target="_blank" rel="noopener noreferrer" className="link">
-              GitHub
-            </a>
-          </li>
-        </ul>
-      </section>
-
-      {/* Experience */}
-      <Section id="experience" title="Experience">
-        <ul className="divide-y divide-line border-t border-line">
-          {experience.map((job) => (
-            <li key={`${job.company}-${job.role}`}>
-              <details className="group">
-                <summary className="block cursor-pointer list-none py-4 [&::-webkit-details-marker]:hidden">
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-medium">
-                      {job.role}, {job.company}
-                    </h3>
-                    <span className="meta shrink-0">{job.period}</span>
-                  </div>
-                  <p className="meta mt-1">{job.summary}</p>
-                </summary>
-                <ul className="meta list-disc space-y-1 pb-5 pl-5 leading-relaxed">
-                  {job.points.map((p) => (
-                    <li key={p}>{p}</li>
-                  ))}
-                </ul>
-              </details>
-            </li>
-          ))}
-        </ul>
-        <p className="meta mt-3">Click a role to see details.</p>
-      </Section>
-
-      {/* Projects */}
-      <Section
-        id="projects"
-        title="Projects"
-        action={
-          <Link href="/projects" className="link text-sm">
-            All projects
-          </Link>
-        }
-      >
-        <ProjectList projects={featured} />
-      </Section>
-
-      {/* Education & certifications */}
-      <Section id="education" title="Education & certifications">
-        <ul className="divide-y divide-line border-t border-line">
-          {education.map((e) => (
-            <li key={e.degree} className="flex items-baseline justify-between gap-4 py-3">
-              <span>
-                <span className="font-medium">{e.degree}</span>
-                <span className="meta block">{e.school}</span>
-              </span>
-              {e.period && <span className="meta shrink-0">{e.period}</span>}
-            </li>
-          ))}
-          {certifications.map((c) => (
-            <li key={c.name} className="flex items-baseline justify-between gap-4 py-3">
-              <span>
-                <span className="font-medium">
-                  {c.issuer} Certified: {c.name}
-                </span>
-                {c.credentialId && <span className="meta block">Credential ID {c.credentialId}</span>}
-              </span>
-              <span className="meta shrink-0">{c.issued}</span>
-            </li>
-          ))}
-        </ul>
-      </Section>
-
-      {/* Skills */}
-      <Section id="skills" title="Skills">
-        <dl className="space-y-3 text-sm">
-          {skills.map((s) => (
-            <div key={s.group} className="sm:flex sm:gap-6">
-              <dt className="font-medium sm:w-44 sm:shrink-0">{s.group}</dt>
-              <dd className="text-muted">{s.items.join(', ')}</dd>
-            </div>
-          ))}
-          <div className="sm:flex sm:gap-6">
-            <dt className="font-medium sm:w-44 sm:shrink-0">Languages</dt>
-            <dd className="text-muted">{site.languages.join(', ')}</dd>
-          </div>
-        </dl>
-      </Section>
-
-      {/* Writing */}
-      {posts.length > 0 && (
-        <Section
-          id="writing"
-          title="Writing"
-          action={
-            <Link href="/blog" className="link text-sm">
-              All posts
-            </Link>
-          }
+    <section className="wrap grid flex-1 items-center gap-12 py-10 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
+      <div>
+        <p
+          className="rise inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-[13px] shadow-[0_1px_2px_rgba(15,23,42,0.08)]"
+          style={delay(0)}
         >
-          <PostList posts={posts} />
-        </Section>
-      )}
+          <span className="relative flex h-2 w-2" aria-hidden>
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          Open to Data Engineering roles · Warsaw
+        </p>
 
-      {/* Contact */}
-      <Section id="contact" title="Contact">
-        <p className="mb-3 leading-relaxed text-muted">The fastest way to reach me is email.</p>
-        <CopyEmail />
-      </Section>
-    </>
+        <h1 className="rise mt-6 text-5xl font-extrabold tracking-tight sm:text-6xl" style={delay(0.08)}>
+          {site.name}
+        </h1>
+        <p className="rise mt-2 text-2xl font-semibold text-blue-600" style={delay(0.16)}>
+          Data Engineer
+        </p>
+        <p className="rise mt-5 max-w-lg text-lg leading-relaxed text-slate-600" style={delay(0.24)}>
+          Azure data warehouses, ETL pipelines and Power BI — 3+ years turning enterprise data into decisions. M.Sc.
+          in Data Science, 2× Microsoft certified.
+        </p>
+
+        <div className="rise mt-8 flex flex-wrap gap-3" style={delay(0.32)}>
+          <Link href="/projects" className="btn-primary">
+            View projects <span aria-hidden>→</span>
+          </Link>
+          <a href={site.resume} target="_blank" rel="noopener" className="btn-secondary">
+            Download CV
+          </a>
+          <Link href="/contact" className="btn-secondary">
+            Contact
+          </Link>
+        </div>
+      </div>
+
+      <div className="rise" style={delay(0.2)}>
+        <Terminal />
+      </div>
+    </section>
   )
 }

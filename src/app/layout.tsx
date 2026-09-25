@@ -1,12 +1,13 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
-import { Inter } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { site, experience } from '@/lib/site'
 
 const inter = Inter({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-inter' })
+const mono = JetBrains_Mono({ subsets: ['latin'], display: 'swap', variable: '--font-mono' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export const viewport: Viewport = { themeColor: '#ffffff' }
+export const viewport: Viewport = { themeColor: '#eef2f7' }
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -68,23 +69,20 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen flex flex-col font-sans antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
-        />
-          <a
-            href="#content"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded focus:bg-black focus:px-4 focus:py-2 focus:text-white"
-          >
-            Skip to content
-          </a>
-          <Navbar />
-          <main id="content" className="flex-1">
-            {children}
-          </main>
-          <Footer />
+    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+      <body className="flex min-h-screen flex-col font-sans antialiased">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
+        <a
+          href="#content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
+        >
+          Skip to content
+        </a>
+        <Navbar />
+        <main id="content" className="flex flex-1 flex-col">
+          {children}
+        </main>
+        <Footer />
 
         {/* Cookie-free analytics: no consent banner needed under GDPR */}
         <Analytics />

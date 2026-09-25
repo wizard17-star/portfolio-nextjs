@@ -1,20 +1,16 @@
 import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 
-const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`
-
 const config: Config = {
   content: ['./src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        bg: token('bg'),
-        fg: token('fg'),
-        muted: token('muted'),
-        line: token('line'),
+        canvas: '#eef2f7',
       },
       fontFamily: {
         sans: ['var(--font-inter)', ...defaultTheme.fontFamily.sans],
+        mono: ['var(--font-mono)', ...defaultTheme.fontFamily.mono],
       },
     },
   },
