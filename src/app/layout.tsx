@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
-import Script from 'next/script'
+import { Analytics } from '@vercel/analytics/next'
 import { Inter } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
@@ -94,17 +94,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Footer />
         </Providers>
 
-        {process.env.NODE_ENV === 'production' && (
-          <>
-            <Script src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`} strategy="afterInteractive" />
-            <Script id="ga-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${site.gaId}');`}
-            </Script>
-          </>
-        )}
+        {/* Cookie-free analytics: no consent banner needed under GDPR */}
+        <Analytics />
       </body>
     </html>
   )

@@ -13,7 +13,6 @@ export const site = {
   location: 'Warsaw, Poland',
   email: 'serhataslan0009@gmail.com',
   resume: '/Resume_Serhat.pdf',
-  gaId: 'G-EENPM0GTF8',
   links: {
     linkedin: 'https://www.linkedin.com/in/serhat-aslan/',
     github: 'https://github.com/wizard17-star',
