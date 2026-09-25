@@ -56,6 +56,72 @@
   }
 }
 
+/* Reading progress: a 2px accent line driven by page scroll (no JS) */
+.scroll-progress {
+  @apply pointer-events-none fixed inset-x-0 top-0 z-[60] h-0.5 origin-left bg-accent;
+  transform: scaleX(0);
+}
+
+/* Sections and rows ease in as they enter the viewport (no JS; ignored where unsupported) */
+@supports (animation-timeline: view()) {
+  .scroll-progress {
+    animation: grow linear both;
+    animation-timeline: scroll(root);
+  }
+
+  .reveal {
+    animation: reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+
+@keyframes grow {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Flow diagram steps appear one after another when a project row opens */
+details[open] .flow-step {
+  animation: step-in 0.35s ease-out both;
+  animation-delay: calc(var(--i) * 90ms);
+}
+
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Command menu entrance */
+.command-menu[open] {
+  animation: pop 0.15s ease-out;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(-4px);
+  }
+}
+
 /* Hero pipeline: packets travel along each track */
 @keyframes flow {
   from {
@@ -86,8 +152,15 @@
     scroll-behavior: auto;
   }
   .packet,
-  .caret {
-    animation: none;
+  .caret,
+  .reveal,
+  .scroll-progress,
+  .flow-step,
+  .command-menu {
+    animation: none !important;
+  }
+  .scroll-progress {
+    display: none;
   }
   .packet {
     display: none;

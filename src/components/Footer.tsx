@@ -12,6 +12,7 @@ export default function Footer() {
     <footer className="wrap mt-24 flex flex-col gap-3 border-t border-line py-8 font-mono text-xs text-muted sm:flex-row sm:items-center sm:justify-between">
       <p>
         © {new Date().getFullYear()} {site.name} · {site.location}
+        <span className="hidden sm:inline"> · press ⌘K / Ctrl K to navigate</span>
       </p>
       <ul className="flex gap-5">
         {socials.map(({ href, label }) => (

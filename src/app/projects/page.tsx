@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import ProjectList from '@/components/ProjectList'
+import ProjectFilter from '@/components/ProjectFilter'
 import { projects, site } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -20,14 +20,14 @@ export default function ProjectsPage() {
       </p>
       <h1 className="mt-6 text-3xl font-semibold tracking-tight sm:text-4xl">Things I&apos;ve built</h1>
       <p className="mt-4 max-w-xl leading-relaxed text-muted">
-        Enterprise data platforms, streaming pipelines and ML research. Rows marked ↗︎ link to the source on{' '}
+        Enterprise data platforms, streaming pipelines and ML research. Open any row to see how the data flows. Source code is on{' '}
         <a href={site.links.github} target="_blank" rel="noopener noreferrer" className="link text-fg">
           GitHub
         </a>
         .
       </p>
       <div className="mt-12">
-        <ProjectList projects={sorted} />
+        <ProjectFilter projects={sorted} />
       </div>
     </div>
   )

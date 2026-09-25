@@ -5,6 +5,7 @@ import Section from '@/components/Section'
 import ProjectList from '@/components/ProjectList'
 import PostList from '@/components/PostList'
 import CopyEmail from '@/components/CopyEmail'
+import LocalTime from '@/components/LocalTime'
 import { getMediumPosts } from '@/lib/getMediumPosts'
 import { certifications, education, experience, highlights, projects, site, skills } from '@/lib/site'
 
@@ -26,6 +27,8 @@ export default async function Home() {
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
           open to data engineering roles
+          <span className="text-line">/</span>
+          <LocalTime />
         </p>
 
         <h1 className="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">{site.name}</h1>

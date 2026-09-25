@@ -11,6 +11,7 @@ export const site = {
   description:
     'Serhat Aslan is a Warsaw-based Data Engineer with 3+ years of experience building Azure data warehouses, ETL pipelines and Power BI reporting for enterprise teams.',
   location: 'Warsaw, Poland',
+  timeZone: 'Europe/Warsaw',
   email: 'serhataslan0009@gmail.com',
   resume: '/Resume_Serhat.pdf',
   links: {
@@ -114,8 +115,13 @@ export const education = [
   },
 ]
 
+export type ProjectCategory = 'Data Engineering' | 'BI' | 'ML & AI' | 'Web'
+
 export type Project = {
   title: string
+  category: ProjectCategory
+  /** How data moves through the system, left to right */
+  flow?: string[]
   description: string
   tech: string[]
   company?: string
@@ -127,6 +133,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: 'Modern Data Warehouse on Azure',
+    category: 'Data Engineering',
+    flow: ['SAP · Salesforce · Dynamics · Karmak', 'Azure Data Factory', 'SQL Server DWH', 'Power BI'],
     company: 'TEMSA',
     description:
       'Cloud data warehouse with CI/CD that unifies SAP, Salesforce, Dynamics, Karmak and SQL Server data. Replaced legacy data services with Azure Data Factory and streamlined data flow across platforms.',
@@ -136,6 +144,8 @@ export const projects: Project[] = [
   },
   {
     title: 'DRAM-T: Risk-Aware Multimodal Transformer',
+    category: 'ML & AI',
+    flow: ['Prices · Macro · News', 'FinBERT + MIDAS', 'Multimodal Transformer', 'Return · Volatility · Correlation', 'Portfolio VaR'],
     description:
       "MSc thesis. A Transformer that fuses market prices, macroeconomic series and FinBERT news sentiment to forecast returns, volatility and cross-asset correlation for portfolio VaR. Evaluated over 88 runs with leakage-safe walk-forward validation and rigorous significance testing; 100+ unit tests.",
     tech: ['PyTorch', 'Transformers', 'FinBERT', 'Time Series', 'Statistics'],
@@ -145,6 +155,8 @@ export const projects: Project[] = [
   },
   {
     title: 'CDC Data Platform with Delta Lake',
+    category: 'Data Engineering',
+    flow: ['PostgreSQL', 'Debezium', 'Kafka', 'Spark', 'Delta Lake: Bronze → Silver → Gold'],
     description:
       'End-to-end change data capture: PostgreSQL changes are captured by Debezium, streamed through Kafka and processed by Spark into a Bronze → Silver → Gold medallion lakehouse on Delta Lake and MinIO, with a star schema in the Gold layer. Runs fully in Docker.',
     tech: ['Kafka', 'Debezium', 'Spark', 'Delta Lake', 'Docker'],
@@ -154,6 +166,8 @@ export const projects: Project[] = [
   },
   {
     title: 'Fabric-Based BI Architecture',
+    category: 'BI',
+    flow: ['Sources', 'Dataflows', 'Lakehouse', 'Semantic model', 'Power BI'],
     company: 'TEMSA',
     description:
       'End-to-end BI on Microsoft Fabric combining lakehouse, dataflows and semantic models to serve reporting for Europe, America and Türkiye.',
@@ -162,6 +176,8 @@ export const projects: Project[] = [
   },
   {
     title: 'RAG Evaluation App',
+    category: 'ML & AI',
+    flow: ['Documents', 'Sentence Transformers', 'FAISS', 'Gemini', 'Faithfulness · Relevance'],
     description:
       'Compares retrieval-augmented generation techniques (hybrid retrieval, reranking, metadata filtering, chain-of-thought prompting) using Gemini, FAISS and Sentence Transformers, scored on faithfulness, relevance and context precision.',
     tech: ['Python', 'Gemini', 'FAISS', 'Streamlit'],
@@ -169,6 +185,8 @@ export const projects: Project[] = [
   },
   {
     title: 'Consumer Complaints Classification',
+    category: 'ML & AI',
+    flow: ['277K complaints', 'TF-IDF', 'SMOTE', 'Logistic Regression', 'F1 0.747'],
     description:
       'Text classification on the CFPB consumer complaints dataset (277K records, stratified to 10K). Compared four models on TF-IDF features; Logistic Regression with SMOTE reached F1 0.747.',
     tech: ['scikit-learn', 'NLP', 'TF-IDF', 'SMOTE'],
@@ -176,6 +194,8 @@ export const projects: Project[] = [
   },
   {
     title: 'AI Travel Assistant',
+    category: 'ML & AI',
+    flow: ['Streamlit UI', 'FastAPI', 'GPT-4 + travel APIs', 'Itinerary'],
     description:
       'LLM-powered trip planner that combines GPT-4 with attraction, weather and hotel APIs to generate city itineraries, served by a FastAPI backend and a Streamlit UI.',
     tech: ['FastAPI', 'OpenAI', 'Streamlit', 'REST APIs'],
@@ -183,6 +203,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Personal Portfolio Website',
+    category: 'Web',
     description:
       'This site: a statically rendered Next.js App Router site with ISR-powered Medium feed, dark mode, SEO metadata and structured data.',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],

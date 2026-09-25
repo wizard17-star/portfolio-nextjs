@@ -12,7 +12,7 @@ export default function Section({
   action?: React.ReactNode
 }) {
   return (
-    <section id={id} className="wrap mt-24">
+    <section id={id} className="wrap reveal mt-24">
       <div className="mb-8 flex items-baseline justify-between gap-4">
         <h2 className="label">
           <span className="text-accent">{index}</span> / {title}

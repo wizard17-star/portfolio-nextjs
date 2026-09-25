@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useTheme } from 'next-themes'
 import { Moon, Sun } from 'lucide-react'
+import { CommandTrigger } from './CommandMenu'
 
 const links = [
   { href: '/#work', label: 'work' },
@@ -37,6 +38,9 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
+          <span className="hidden sm:inline">
+            <CommandTrigger />
+          </span>
           <ThemeToggle />
         </nav>
       </div>

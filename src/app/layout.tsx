@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import CommandMenu from '@/components/CommandMenu'
 import { Providers } from './providers'
 import { site, experience } from '@/lib/site'
 
@@ -88,11 +89,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           >
             Skip to content
           </a>
+          <div className="scroll-progress" aria-hidden />
           <Navbar />
           <main id="content" className="flex-1">
             {children}
           </main>
           <Footer />
+          <CommandMenu />
         </Providers>
 
         {/* Cookie-free analytics: no consent banner needed under GDPR */}
