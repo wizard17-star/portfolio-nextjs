@@ -81,7 +81,8 @@ export default async function Home() {
               <p>
                 I care about the unglamorous parts that make data trustworthy: governance, master data, data
                 cataloging, and masking sensitive data under GDPR. Today I work on test data management at BMO while
-                completing a Master&apos;s in Data Science at PJATK in Warsaw.
+                completing a Master&apos;s in Data Science at PJATK in Warsaw, where my thesis builds a risk-aware
+                multimodal Transformer for financial forecasting.
               </p>
             </div>
           </div>

@@ -129,12 +129,21 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: 'RAG Question Answering System',
+    title: 'DRAM-T: Risk-Aware Multimodal Transformer',
     description:
-      'Question answering over documents using Retrieval-Augmented Generation: FAISS semantic search retrieves context, Gemini generates grounded answers.',
-    tech: ['Python', 'FAISS', 'Gemini', 'RAG'],
-    github: 'https://github.com/wizard17-star/TEG-Project',
-    highlight: 'Open source',
+      "MSc thesis. A Transformer that fuses market prices, macroeconomic series and FinBERT news sentiment to forecast returns, volatility and cross-asset correlation for portfolio VaR. Evaluated over 88 runs with leakage-safe walk-forward validation and rigorous significance testing; 100+ unit tests.",
+    tech: ['PyTorch', 'Transformers', 'FinBERT', 'Time Series', 'Statistics'],
+    github: 'https://github.com/wizard17-star/dramt',
+    highlight: 'MSc thesis',
+    featured: true,
+  },
+  {
+    title: 'CDC Data Platform with Delta Lake',
+    description:
+      'End-to-end change data capture: PostgreSQL changes are captured by Debezium, streamed through Kafka and processed by Spark into a Bronze → Silver → Gold medallion lakehouse on Delta Lake and MinIO, with a star schema in the Gold layer. Runs fully in Docker.',
+    tech: ['Kafka', 'Debezium', 'Spark', 'Delta Lake', 'Docker'],
+    github: 'https://github.com/wizard17-star/data-platform',
+    highlight: 'Streaming',
     featured: true,
   },
   {
@@ -144,19 +153,27 @@ export const projects: Project[] = [
       'End-to-end BI on Microsoft Fabric combining lakehouse, dataflows and semantic models to serve reporting for Europe, America and Türkiye.',
     tech: ['Microsoft Fabric', 'Lakehouse', 'Dataflows', 'Power BI'],
     highlight: 'Multi-region reporting',
-    featured: true,
   },
   {
-    title: 'Real-Time Data Streaming Pipeline',
+    title: 'RAG Evaluation App',
     description:
-      'Kafka-based pipeline that ingests vehicle telemetry, transforms it with Spark Structured Streaming and stores it as Delta tables on MinIO.',
-    tech: ['Apache Kafka', 'Spark', 'Delta Lake', 'MinIO'],
+      'Compares retrieval-augmented generation techniques (hybrid retrieval, reranking, metadata filtering, chain-of-thought prompting) using Gemini, FAISS and Sentence Transformers, scored on faithfulness, relevance and context precision.',
+    tech: ['Python', 'Gemini', 'FAISS', 'Streamlit'],
+    github: 'https://github.com/wizard17-star/TEG-Project',
   },
   {
-    title: 'Automated Data Quality Monitoring',
+    title: 'Consumer Complaints Classification',
     description:
-      'Daily checks on ingested data for anomalies, missing values and schema drift using Great Expectations and Python.',
-    tech: ['Python', 'Great Expectations', 'Data Quality'],
+      'Text classification on the CFPB consumer complaints dataset (277K records, stratified to 10K). Compared four models on TF-IDF features; Logistic Regression with SMOTE reached F1 0.747.',
+    tech: ['scikit-learn', 'NLP', 'TF-IDF', 'SMOTE'],
+    github: 'https://github.com/wizard17-star/Consumer-Complaints-Classification',
+  },
+  {
+    title: 'AI Travel Assistant',
+    description:
+      'LLM-powered trip planner that combines GPT-4 with attraction, weather and hotel APIs to generate city itineraries, served by a FastAPI backend and a Streamlit UI.',
+    tech: ['FastAPI', 'OpenAI', 'Streamlit', 'REST APIs'],
+    github: 'https://github.com/wizard17-star/ai-travel-assistant',
   },
   {
     title: 'Personal Portfolio Website',
@@ -170,7 +187,7 @@ export const projects: Project[] = [
 export const skills = [
   {
     group: 'Data Engineering',
-    items: ['Azure Data Factory', 'ETL / ELT', 'Data Warehousing', 'Data Modeling', 'T-SQL', 'Python', 'Spark', 'Kafka'],
+    items: ['Azure Data Factory', 'ETL / ELT', 'Data Warehousing', 'Data Modeling', 'T-SQL', 'Python', 'Spark', 'Kafka', 'Debezium (CDC)', 'Delta Lake'],
   },
   {
     group: 'BI & Analytics',
@@ -178,14 +195,14 @@ export const skills = [
   },
   {
     group: 'Cloud & Platforms',
-    items: ['Azure', 'SQL Server', 'Microsoft Fabric', 'SAP (source)', 'Salesforce (source)'],
+    items: ['Azure', 'SQL Server', 'PostgreSQL', 'Docker', 'SAP (source)', 'Salesforce (source)'],
   },
   {
     group: 'Governance & Quality',
     items: ['Data Governance', 'Master Data Management', 'Data Catalog', 'Data Masking', 'Test Data Management', 'GDPR / KVKK'],
   },
   {
-    group: 'AI',
-    items: ['RAG', 'Gemini', 'FAISS', 'Neural Networks'],
+    group: 'ML & AI',
+    items: ['PyTorch', 'Transformers', 'scikit-learn', 'NLP', 'RAG', 'FastAPI'],
   },
 ]

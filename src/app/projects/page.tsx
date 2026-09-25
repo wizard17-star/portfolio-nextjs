@@ -5,7 +5,7 @@ import { projects, site } from '@/lib/site'
 export const metadata: Metadata = {
   title: 'Projects',
   description:
-    'Data engineering projects by Serhat Aslan: Azure data warehouse, Microsoft Fabric BI, real-time Kafka/Spark streaming, data quality monitoring and a RAG question answering system.',
+    'Data engineering projects by Serhat Aslan: Azure data warehouse, Microsoft Fabric BI, CDC streaming with Kafka and Delta Lake, a multimodal Transformer MSc thesis, RAG and NLP projects.',
   alternates: { canonical: '/projects' },
 }
 
