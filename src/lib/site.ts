@@ -7,9 +7,9 @@ export const site = {
   url: 'https://www.serhataslan.com',
   name: 'Serhat Aslan',
   role: 'Data Engineer',
-  headline: 'Data Engineer — Azure, Data Warehousing & Power BI',
+  headline: 'Data Engineer in Warsaw',
   description:
-    'Serhat Aslan is a Warsaw-based Data Engineer with 5 years of experience building data pipelines, data warehouses and reporting for enterprise teams.',
+    'Serhat Aslan is a Data Engineer in Warsaw, Poland with 5 years of experience in data pipelines, data warehousing and Power BI reporting. M.Sc. in Data Science, Microsoft certified. Currently at BMO supporting QA and UAT teams.',
   location: 'Warsaw, Poland',
   timeZone: 'Europe/Warsaw',
   email: 'serhataslan0009@gmail.com',
@@ -51,15 +51,16 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    summary: 'Test data and end-to-end test support for enterprise banking systems.',
+    summary: 'Test data and end-to-end test support for QA and UAT teams.',
     role: 'Test Data Management Specialist',
     company: 'BMO',
     period: '2025 – Present',
     points: [
-      'Work closely with QA and UAT teams, providing end-to-end test support across releases.',
-      'Create and manage the test data sets that software testing depends on.',
-      'Mask and anonymize sensitive data so test environments stay safe to use.',
-      'Use SQL for data extraction, validation and troubleshooting.',
+      'Work closely with QA and UAT teams and prepare the test data they need to create their test cases.',
+      'Give end-to-end test support, from setting up test data to checking results during test runs.',
+      'Build and manage test data sets for many connected banking systems.',
+      'Mask and anonymize sensitive data so test environments are safe to use.',
+      'Use SQL to find, extract and validate data, and to solve data issues quickly.',
     ],
     tech: ['SQL', 'Test Data Management', 'End-to-end testing', 'UAT', 'Data Masking'],
   },
@@ -210,6 +211,8 @@ export type Certification = {
   issued: string
   credentialId?: string
   url?: string
+  /** Official badge image published by the issuer */
+  badge?: string
 }
 
 const learn = (path: string) => `https://learn.microsoft.com/api/credentials/share/en-us/${path}`
@@ -222,6 +225,7 @@ export const certifications: Certification[] = [
     issuer: 'Microsoft',
     issued: 'Jun 2025',
     credentialId: 'D72B36A01DD84512',
+    badge: '/badges/microsoft-certified-associate.svg',
     url: learn('SerhatAslan-6535/D72B36A01DD84512'),
   },
   {
@@ -231,6 +235,7 @@ export const certifications: Certification[] = [
     issuer: 'Microsoft',
     issued: 'Jun 2025',
     credentialId: '468AA8CB49CAF8C7',
+    badge: '/badges/microsoft-certified-associate.svg',
     url: learn('SerhatAslan-8258/468AA8CB49CAF8C7'),
   },
   {
@@ -240,6 +245,7 @@ export const certifications: Certification[] = [
     issuer: 'Microsoft',
     issued: 'May 2024',
     credentialId: '6487E34CD910364B',
+    badge: '/badges/microsoft-applied-skills.svg',
     url: learn('SerhatAslan-7152/6487E34CD910364B'),
   },
   {
