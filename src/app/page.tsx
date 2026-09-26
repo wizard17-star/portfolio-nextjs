@@ -5,7 +5,6 @@ import CertBadge from '@/components/CertBadge'
 import CopyEmail from '@/components/CopyEmail'
 import ThemeToggle from '@/components/ThemeToggle'
 import Section from '@/components/Section'
-import Logo from '@/components/Logo'
 import { formatDate, getMediumPosts } from '@/lib/getMediumPosts'
 import { certifications, education, experience, projects, site, stack } from '@/lib/site'
 
@@ -25,29 +24,31 @@ export default async function Home() {
       {/* Intro */}
       <header className="rise" style={stagger(0)}>
         <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <Logo size={52} />
-            <div>
-              <h1 className="text-[34px] font-bold leading-none tracking-tight sm:text-[44px]">{site.name}</h1>
-              <p className="mt-2 text-[16px] font-medium text-accent sm:text-[18px]">Data Engineer · Warsaw, Poland</p>
-            </div>
+          <div>
+            <h1 className="text-[34px] font-bold leading-none tracking-tight sm:text-[44px]">{site.name}</h1>
+            <p className="mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[15px] font-medium text-accent sm:text-[17px]">
+              <span>Data Engineer</span>
+              <span className="text-line" aria-hidden>|</span>
+              <span>Researcher</span>
+              <span className="text-line" aria-hidden>|</span>
+              <span>M.Sc. in Data Science</span>
+            </p>
+            <p className="mt-1.5 text-[13.5px] text-mute">Warsaw, Poland</p>
           </div>
           <ThemeToggle />
         </div>
 
-        <div className="mt-7 max-w-[760px] space-y-3 text-[17px] leading-[1.75] text-mute sm:text-[18px]">
+        <div className="mt-6 max-w-[760px] space-y-2 text-[17px] leading-[1.65] text-mute sm:text-[18px]">
           <p>
             Hi, I&apos;m Serhat. I&apos;m a data engineer with{' '}
-            <span className="font-semibold text-ink">5 years of experience</span>. I build data pipelines, data
+            <span className="font-semibold text-ink">5 years of experience</span> and an{' '}
+            <span className="font-semibold text-ink">M.Sc. in Data Science</span>. I build data pipelines, data
             warehouses and reports that help teams make better decisions.
           </p>
           <p>
-            Right now I work at <span className="font-semibold text-ink">BMO</span>. I work closely with the{' '}
+            Right now I work at <span className="font-semibold text-ink">BMO</span>, closely with the{' '}
             <span className="font-semibold text-ink">QA and UAT teams</span>: I prepare the test data they need for
             their test case creation, and I support them end to end while they test.
-          </p>
-          <p>
-            I also have an <span className="font-semibold text-ink">M.Sc. in Data Science</span>.
           </p>
         </div>
 
