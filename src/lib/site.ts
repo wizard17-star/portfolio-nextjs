@@ -117,12 +117,6 @@ export const education = [
     location: 'Warsaw',
     period: '2024 – 2026',
   },
-  {
-    degree: 'B.Sc. in Mechanical Engineering',
-    school: 'Çukurova University',
-    location: 'Adana',
-    period: '',
-  },
 ]
 
 export type Project = {

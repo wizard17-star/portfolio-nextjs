@@ -86,6 +86,56 @@ body * {
   animation-delay: calc(var(--i, 0) * 60ms);
 }
 
+/* Name reveals upward from a mask on load */
+@keyframes mask-up {
+  from {
+    clip-path: inset(100% 0 0 0);
+    transform: translateY(18px);
+  }
+  to {
+    clip-path: inset(-20% 0 -20% 0);
+    transform: none;
+  }
+}
+
+.mask-up {
+  animation: mask-up 0.9s var(--ease) both;
+}
+
+/* Section cards ease in as they scroll into view (falls back to the load animation) */
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: rise linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
+/* Children appear one after another once their parent is visible */
+.stagger > * {
+  animation: rise 0.5s var(--ease) both;
+  animation-delay: calc(0.15s + var(--j, 0) * 45ms);
+}
+
+/* Light sweep across the primary button on hover */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.35) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s var(--ease);
+}
+
+.shine:hover::after {
+  transform: translateX(120%);
+}
+
 /* Hovering a list dims its siblings so the focused row stands out */
 @media (hover: hover) {
   .focus-list:hover > li {

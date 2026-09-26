@@ -87,6 +87,9 @@ const jsonLd = {
       '@type': 'Person',
       '@id': `${site.url}/#person`,
       name: site.name,
+      alternateName: ['Serhat ASLAN', 'Serhat Aslan Data Engineer'],
+      givenName: 'Serhat',
+      familyName: 'Aslan',
       url: site.url,
       image: `${site.url}/icon-512.png`,
       email: `mailto:${site.email}`,
@@ -96,7 +99,6 @@ const jsonLd = {
       address: { '@type': 'PostalAddress', addressLocality: 'Warsaw', addressCountry: 'PL' },
       alumniOf: [
         { '@type': 'CollegeOrUniversity', name: 'Polish-Japanese Academy of Information Technology' },
-        { '@type': 'CollegeOrUniversity', name: 'Çukurova University' },
       ],
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', credentialCategory: 'degree', name: 'M.Sc. in Data Science' },

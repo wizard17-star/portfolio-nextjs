@@ -25,15 +25,17 @@ export default async function Home() {
       <header className="rise" style={stagger(0)}>
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="text-[34px] font-bold leading-none tracking-tight sm:text-[44px]">{site.name}</h1>
-            <p className="mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[15px] font-medium text-accent sm:text-[17px]">
-              <span>Data Engineer</span>
-              <span className="text-line" aria-hidden>|</span>
-              <span>Test Data Management @ BMO</span>
-              <span className="text-line" aria-hidden>|</span>
-              <span>M.Sc. in Data Science</span>
+            <h1 className="mask-up text-[34px] font-bold leading-none tracking-tight sm:text-[44px]">{site.name}</h1>
+            <p className="stagger mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[15px] font-medium text-accent sm:text-[17px]">
+              <span style={{ '--j': 1 } as React.CSSProperties}>Data Engineer</span>
+              <span className="text-line" style={{ '--j': 2 } as React.CSSProperties} aria-hidden>|</span>
+              <span style={{ '--j': 3 } as React.CSSProperties}>Researcher</span>
+              <span className="text-line" style={{ '--j': 4 } as React.CSSProperties} aria-hidden>|</span>
+              <span style={{ '--j': 5 } as React.CSSProperties}>M.Sc. in Data Science</span>
             </p>
-            <p className="mt-1.5 text-[13.5px] text-mute">Warsaw, Poland</p>
+            <p className="mt-1.5 text-[14px] text-mute">
+              Currently at <span className="font-semibold text-ink">BMO</span> · Warsaw, Poland
+            </p>
           </div>
           <ThemeToggle />
         </div>
@@ -57,7 +59,7 @@ export default async function Home() {
             href={site.resume}
             target="_blank"
             rel="noopener"
-            className="rounded-full bg-ink px-4 py-2 font-medium text-paper transition-opacity hover:opacity-85"
+            className="shine rounded-full bg-ink px-4 py-2 font-medium text-paper transition-transform duration-200 hover:-translate-y-0.5"
           >
             Download CV
           </a>
@@ -97,9 +99,9 @@ export default async function Home() {
             <span className="font-mono text-xs text-mute">{current.period}</span>
           </div>
           <p className="mt-1 text-[14px] text-mute">Bank of Montreal · enterprise banking systems</p>
-          <ul className="mt-4 space-y-2 text-[15.5px] leading-relaxed">
-            {current.points.map((p) => (
-              <li key={p} className="flex gap-3">
+          <ul className="stagger mt-4 space-y-2 text-[15.5px] leading-relaxed">
+            {current.points.map((p, j) => (
+              <li key={p} className="flex gap-3" style={{ '--j': j } as React.CSSProperties}>
                 <span className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
                 {p}
               </li>
@@ -162,9 +164,13 @@ export default async function Home() {
 
         {/* Technologies */}
         <Section id="stack" icon={Cpu} title="Technologies" subtitle="Tools I use in my daily work" index={4}>
-          <ul className="flex flex-wrap gap-2">
-            {stack.map((t) => (
-              <li key={t} className="rounded-full border border-line bg-paper px-3.5 py-1.5 text-[13.5px]">
+          <ul className="stagger flex flex-wrap gap-2">
+            {stack.map((t, j) => (
+              <li
+                key={t}
+                style={{ '--j': j } as React.CSSProperties}
+                className="rounded-full border border-line bg-paper px-3.5 py-1.5 text-[13.5px] transition-[transform,border-color,color] duration-200 hover:-translate-y-0.5 hover:border-accent/50 hover:text-accent"
+              >
                 {t}
               </li>
             ))}
@@ -176,7 +182,7 @@ export default async function Home() {
           id="credentials"
           icon={GraduationCap}
           title="Education"
-          subtitle="Degrees"
+          subtitle="Master’s degree"
           index={5}
         >
           <div className="flex items-baseline justify-between gap-4 rounded-2xl bg-paper px-4 py-3.5">
@@ -185,12 +191,6 @@ export default async function Home() {
               <span className="block text-[13.5px] text-mute">{msc.school}, Warsaw · thesis on multimodal Transformers</span>
             </p>
             <span className="whitespace-nowrap font-mono text-xs text-mute">{msc.period}</span>
-          </div>
-          <div className="mt-3 flex items-baseline justify-between gap-4 px-4">
-            <p>
-              <span className="text-[16px] font-semibold">{education[1].degree}</span>
-              <span className="block text-[13.5px] text-mute">{education[1].school}</span>
-            </p>
           </div>
         </Section>
 
