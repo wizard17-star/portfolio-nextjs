@@ -35,18 +35,7 @@ export default async function Home() {
         BMO.
       </p>
 
-      <div className="rise mt-5" style={stagger(2)}>
-        <p className="text-[12.5px] font-semibold uppercase tracking-[0.08em] text-mute">Technologies I work with</p>
-        <ul className="mt-2.5 flex flex-wrap gap-1.5">
-          {stack.map((t) => (
-            <li key={t} className="rounded-full border border-line bg-card px-3 py-1 text-[13px]">
-              {t}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <nav className="rise mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px] text-mute" style={stagger(2)} aria-label="Links">
+      <nav className="rise mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px] text-mute" style={stagger(2)} aria-label="Links">
         <a href={site.resume} target="_blank" rel="noopener" className="underline-grow font-medium text-ink">
           Resume
         </a>
@@ -131,6 +120,20 @@ export default async function Home() {
                   ))}
                 </ul>
               </details>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* Technologies */}
+      <section className="rise mt-12" style={stagger(7)} aria-labelledby="stack">
+        <h2 id="stack" className="label">
+          Technologies I work with
+        </h2>
+        <ul className="mt-3 flex flex-wrap gap-1.5">
+          {stack.map((t) => (
+            <li key={t} className="rounded-full border border-line bg-card px-3 py-1 text-[13px]">
+              {t}
             </li>
           ))}
         </ul>
