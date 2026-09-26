@@ -4,6 +4,7 @@ import defaultTheme from 'tailwindcss/defaultTheme'
 const token = (name: string) => `rgb(var(--${name}) / <alpha-value>)`
 
 const config: Config = {
+  darkMode: 'class',
   content: ['./src/app/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -17,7 +18,6 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
-        serif: ['var(--font-serif)', ...defaultTheme.fontFamily.serif],
         mono: ['var(--font-mono)', ...defaultTheme.fontFamily.mono],
       },
     },

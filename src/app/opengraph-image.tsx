@@ -18,10 +18,10 @@ export default function OpengraphImage() {
           padding: '90px',
           background: '#fbfbfa',
           color: '#141413',
-          fontFamily: 'serif',
+          fontFamily: 'sans-serif',
         }}
       >
-        <div style={{ fontSize: 96, letterSpacing: -2 }}>{site.name}</div>
+        <div style={{ fontSize: 96, fontWeight: 800, letterSpacing: -3 }}>{site.name}</div>
         <div style={{ fontSize: 40, marginTop: 18, color: '#0e7490', fontFamily: 'sans-serif' }}>
           Data Engineer · M.Sc. in Data Science
         </div>

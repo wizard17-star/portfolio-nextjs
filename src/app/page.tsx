@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import ProjectRows from '@/components/ProjectRows'
 import CertBadge from '@/components/CertBadge'
 import CopyEmail from '@/components/CopyEmail'
+import ThemeToggle from '@/components/ThemeToggle'
 import { formatDate, getMediumPosts } from '@/lib/getMediumPosts'
 import { certifications, education, experience, projects, site } from '@/lib/site'
 
@@ -17,28 +18,24 @@ export default async function Home() {
   const msc = education[0]
 
   return (
-    <div className="mx-auto max-w-[660px] px-6 pb-16 pt-10 sm:pt-14">
+    <div className="mx-auto max-w-[920px] px-5 pb-16 pt-8 sm:px-10 sm:pt-12">
       {/* Header */}
-      <header className="rise flex items-baseline justify-between gap-4" style={stagger(0)}>
-        <h1 className="font-serif text-[34px] font-medium leading-none tracking-tight">{site.name}</h1>
-        <p className="flex items-center gap-2 text-[13px] text-mute">
-          <span className="relative flex h-2 w-2" aria-hidden>
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-          </span>
-          Open to roles
-        </p>
+      <header className="rise flex items-start justify-between gap-4" style={stagger(0)}>
+        <div>
+          <h1 className="text-[40px] font-extrabold leading-none tracking-tight sm:text-[52px]">{site.name}</h1>
+          <p className="mt-3 text-[17px] font-medium text-accent sm:text-[19px]">Data Engineer · Warsaw</p>
+        </div>
+        <ThemeToggle />
       </header>
 
-      <p className="rise mt-5 font-serif text-[21px] leading-[1.45]" style={stagger(1)}>
-        Data Engineer in Warsaw with an <span className="italic">M.Sc. in Data Science</span>. I connect scattered
-        enterprise systems into one reliable data platform{' '}
-        <span className="text-mute">
-          — Azure Data Factory, a clean warehouse, and the Power BI reports people rely on.
-        </span>
+      <p className="rise mt-6 max-w-[720px] text-[17px] leading-[1.7] text-mute sm:text-[18px]" style={stagger(1)}>
+        I design and build data pipelines, warehouses and Power BI reporting on{' '}
+        <span className="font-medium text-ink">Azure and Microsoft Fabric</span>. Today I support QA and UAT teams at{' '}
+        <span className="font-medium text-ink">BMO</span> with test data and end-to-end testing. I hold an{' '}
+        <span className="font-medium text-ink">M.Sc. in Data Science</span>.
       </p>
 
-      <nav className="rise mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[14px] text-mute" style={stagger(2)} aria-label="Links">
+      <nav className="rise mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px] text-mute" style={stagger(2)} aria-label="Links">
         <a href={site.resume} target="_blank" rel="noopener" className="underline-grow font-medium text-ink">
           Resume
         </a>
@@ -49,36 +46,29 @@ export default async function Home() {
           LinkedIn
         </a>
         <CopyEmail />
+        <span className="ml-auto flex items-center gap-2 text-[13px]">
+          <span className="relative flex h-2 w-2" aria-hidden>
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          Open to roles
+        </span>
       </nav>
 
-      <dl className="rise mt-7 grid grid-cols-4 border-t border-line pt-3" style={stagger(3)}>
-        {[
-          ['3+', 'years in data'],
-          ['25+', 'apps integrated'],
-          ['50+', 'dashboards'],
-          ['M.Sc.', 'Data Science'],
-        ].map(([value, label]) => (
-          <div key={label} className="flex flex-col-reverse">
-            <dt className="text-[12.5px] text-mute">{label}</dt>
-            <dd className="text-[22px] font-semibold tracking-tight">{value}</dd>
-          </div>
-        ))}
-      </dl>
-
       {/* Current role */}
-      <section className="rise mt-10" style={stagger(4)} aria-labelledby="now">
+      <section className="rise mt-12" style={stagger(4)} aria-labelledby="now">
         <h2 id="now" className="label">
           Currently
         </h2>
         <article className="mt-2 rounded-2xl border border-line bg-card p-5 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-            <h3 className="text-[17px] font-semibold">
+            <h3 className="text-[18px] font-bold">
               {current.role} <span className="font-normal text-mute">at</span> {current.company}
             </h3>
             <span className="font-mono text-xs text-mute">{current.period}</span>
           </div>
           <p className="mt-1 text-[14px] text-mute">Bank of Montreal · enterprise banking systems</p>
-          <ul className="mt-3 space-y-1.5 text-[14.5px] leading-relaxed">
+          <ul className="mt-3 space-y-1.5 text-[15.5px] leading-relaxed">
             {current.points.map((p) => (
               <li key={p} className="flex gap-2.5">
                 <span className="mt-[9px] h-1 w-1 shrink-0 rounded-full bg-accent" aria-hidden />
@@ -99,7 +89,7 @@ export default async function Home() {
       </section>
 
       {/* Latest projects */}
-      <section className="rise mt-10" style={stagger(5)} aria-labelledby="projects">
+      <section className="rise mt-12" style={stagger(5)} aria-labelledby="projects">
         <div className="mb-1.5 flex items-baseline justify-between">
           <h2 id="projects" className="label">
             Latest projects
@@ -110,7 +100,7 @@ export default async function Home() {
       </section>
 
       {/* Previous experience */}
-      <section className="rise mt-10" style={stagger(6)} aria-labelledby="experience">
+      <section className="rise mt-12" style={stagger(6)} aria-labelledby="experience">
         <h2 id="experience" className="label mb-1.5">
           Previously
         </h2>
@@ -118,7 +108,7 @@ export default async function Home() {
           {previous.map((job) => (
             <li key={`${job.company}-${job.role}`} className="border-b border-line">
               <details className="group">
-                <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto] items-baseline gap-4 py-2.5 [&::-webkit-details-marker]:hidden">
+                <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto] items-baseline gap-4 py-3 text-[16px] [&::-webkit-details-marker]:hidden">
                   <span>
                     <span className="font-medium">{job.role}</span> <span className="text-mute">{job.company}</span>
                   </span>
@@ -136,13 +126,13 @@ export default async function Home() {
       </section>
 
       {/* Education & certifications */}
-      <section className="rise mt-10" style={stagger(7)} aria-labelledby="credentials">
+      <section className="rise mt-12" style={stagger(7)} aria-labelledby="credentials">
         <h2 id="credentials" className="label">
           Education & certifications
         </h2>
         <div className="mt-2 flex items-baseline justify-between gap-4 border-y border-line py-3">
           <p>
-            <span className="font-serif text-[18px] font-medium">{msc.degree}</span>
+            <span className="text-[18px] font-semibold">{msc.degree}</span>
             <span className="block text-[13.5px] text-mute">{msc.school}, Warsaw · thesis on multimodal Transformers</span>
           </p>
           <span className="whitespace-nowrap font-mono text-xs text-mute">{msc.period}</span>
@@ -156,7 +146,7 @@ export default async function Home() {
 
       {/* Writing */}
       {posts.length > 0 && (
-        <section className="rise mt-10" style={stagger(8)} aria-labelledby="writing">
+        <section className="rise mt-12" style={stagger(8)} aria-labelledby="writing">
           <div className="mb-1.5 flex items-baseline justify-between">
             <h2 id="writing" className="label">
               Writing
@@ -172,7 +162,7 @@ export default async function Home() {
                   href={post.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="grid grid-cols-[1fr_auto] items-baseline gap-4 py-2.5"
+                  className="grid grid-cols-[1fr_auto] items-baseline gap-4 py-3 text-[16px]"
                 >
                   <span className="truncate">{post.title}</span>
                   <time dateTime={post.pubDate} className="font-mono text-xs text-mute">

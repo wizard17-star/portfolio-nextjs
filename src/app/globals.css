@@ -17,16 +17,22 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: 16 16 15;
-    --card: 26 26 24;
-    --ink: 236 236 232;
-    --mute: 150 150 144;
-    --line: 42 42 39;
-    --accent: 103 199 214;
-    color-scheme: dark;
-  }
+:root.dark {
+  --paper: 16 16 15;
+  --card: 26 26 24;
+  --ink: 236 236 232;
+  --mute: 150 150 144;
+  --line: 42 42 39;
+  --accent: 103 199 214;
+  color-scheme: dark;
+}
+
+/* Smooth colour change when the theme is toggled */
+body,
+body * {
+  transition-property: background-color, border-color, color, fill;
+  transition-duration: 0.3s;
+  transition-timing-function: var(--ease);
 }
 
 @layer base {
@@ -49,7 +55,7 @@
 
 @layer components {
   .label {
-    @apply text-[13px] font-medium text-mute;
+    @apply text-[13px] font-semibold uppercase tracking-[0.08em] text-mute;
   }
 
   .underline-grow {

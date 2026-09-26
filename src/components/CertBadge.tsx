@@ -23,7 +23,7 @@ export default function CertBadge({ cert, index }: { cert: Certification; index:
         <text x="50" y="44" textAnchor="middle" fontSize="7.5" letterSpacing="1" style={{ fill: 'rgb(var(--mute))' }} className="font-mono">
           {cert.issuer === 'Microsoft' ? 'MICROSOFT' : 'CERTIFIED'}
         </text>
-        <text x="50" y="62" textAnchor="middle" fontSize="14" fontWeight="600" style={{ fill: 'rgb(var(--ink))' }} className="font-serif">
+        <text x="50" y="62" textAnchor="middle" fontSize="15" fontWeight="700" style={{ fill: 'rgb(var(--ink))' }} className="font-sans">
           {cert.issued.slice(-4)}
         </text>
         <rect x="19" y="71" width="62" height="12" rx="6" style={{ fill: 'rgb(var(--accent))' }} />

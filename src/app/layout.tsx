@@ -1,11 +1,10 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
-import { IBM_Plex_Mono, Newsreader, Schibsted_Grotesk } from 'next/font/google'
+import { IBM_Plex_Mono, Plus_Jakarta_Sans } from 'next/font/google'
 import { site, experience } from '@/lib/site'
 
-const sans = Schibsted_Grotesk({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-sans' })
-const serif = Newsreader({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-serif', style: ['normal', 'italic'] })
+const sans = Plus_Jakarta_Sans({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-sans' })
 const mono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], display: 'swap', variable: '--font-mono' })
 
 export const metadata: Metadata = {
@@ -54,6 +53,8 @@ export const viewport: Viewport = {
   ],
 }
 
+const themeScript = `try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}`
+
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -73,8 +74,10 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
+    <html lang="en" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased">
+        {/* Apply the saved or system theme before paint to avoid a flash */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
         <a
           href="#content"

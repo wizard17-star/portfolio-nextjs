@@ -42,17 +42,17 @@ export type Experience = {
 
 export const experience: Experience[] = [
   {
-    summary: 'Test data pipelines, masking and anonymization for enterprise banking systems.',
+    summary: 'Test data and end-to-end test support for enterprise banking systems.',
     role: 'Test Data Management Specialist',
     company: 'BMO',
     period: '2025 – Present',
     points: [
-      'Create and manage test data sets that support software testing across enterprise systems.',
-      'Apply data masking and anonymization in line with GDPR and KVKK.',
+      'Work closely with QA and UAT teams, providing end-to-end test support across releases.',
+      'Create and manage the test data sets that software testing depends on.',
+      'Mask and anonymize sensitive data so test environments stay safe to use.',
       'Use SQL for data extraction, validation and troubleshooting.',
-      'Work with QA and development teams to keep test environments reliable.',
     ],
-    tech: ['SQL', 'Test Data Management', 'Data Masking', 'GDPR'],
+    tech: ['SQL', 'Test Data Management', 'End-to-end testing', 'UAT', 'Data Masking'],
   },
   {
     summary: 'Reporting systems and business data structures.',

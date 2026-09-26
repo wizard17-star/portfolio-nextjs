@@ -33,10 +33,10 @@ export default function ProjectRows({ projects }: { projects: Project[] }) {
                 onMouseEnter={() => setPeek(isOpen ? null : i)}
                 onMouseLeave={() => setPeek(null)}
                 aria-expanded={isOpen}
-                className="grid w-full grid-cols-[1fr_auto] items-baseline gap-4 py-2.5 text-left"
+                className="grid w-full grid-cols-[1fr_auto] items-baseline gap-4 py-3 text-left text-[16px]"
               >
                 <span>
-                  <span className="font-medium">{p.title}</span> <span className="text-mute">{p.tag}</span>
+                  <span className="font-semibold">{p.title}</span> <span className="text-mute">{p.tag}</span>
                 </span>
                 <span className="flex items-baseline gap-3 whitespace-nowrap font-mono text-xs text-mute">
                   {p.date}
@@ -61,7 +61,7 @@ export default function ProjectRows({ projects }: { projects: Project[] }) {
                         </li>
                       ))}
                     </ol>
-                    <p className="text-[14.5px] leading-relaxed text-mute">{p.description}</p>
+                    <p className="text-[15px] leading-relaxed text-mute">{p.description}</p>
                     <div className="flex flex-wrap items-center justify-between gap-2 text-[13px]">
                       <span className="text-mute">{p.tech.join(' · ')}</span>
                       {p.github && (
