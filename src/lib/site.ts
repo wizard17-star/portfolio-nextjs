@@ -213,6 +213,8 @@ export type Certification = {
   url?: string
   /** Official badge image published by the issuer */
   badge?: string
+  /** One plain-language sentence for people who don't know the certificate */
+  explain: string
 }
 
 const learn = (path: string) => `https://learn.microsoft.com/api/credentials/share/en-us/${path}`
@@ -226,6 +228,7 @@ export const certifications: Certification[] = [
     issued: 'Jun 2025',
     credentialId: 'D72B36A01DD84512',
     badge: '/badges/microsoft-certified-associate.svg',
+    explain: 'Microsoft exam that proves I can build and run data pipelines, lakehouses and data warehouses on Microsoft Fabric.',
     url: learn('SerhatAslan-6535/D72B36A01DD84512'),
   },
   {
@@ -236,6 +239,7 @@ export const certifications: Certification[] = [
     issued: 'Jun 2025',
     credentialId: '468AA8CB49CAF8C7',
     badge: '/badges/microsoft-certified-associate.svg',
+    explain: 'Microsoft exam that proves I can build AI solutions on Azure, like language, vision and search services.',
     url: learn('SerhatAslan-8258/468AA8CB49CAF8C7'),
   },
   {
@@ -246,6 +250,7 @@ export const certifications: Certification[] = [
     issued: 'May 2024',
     credentialId: '6487E34CD910364B',
     badge: '/badges/microsoft-applied-skills.svg',
+    explain: 'Hands-on Microsoft lab test: I had to build a working data warehouse in Microsoft Fabric, not just answer questions.',
     url: learn('SerhatAslan-7152/6487E34CD910364B'),
   },
   {
@@ -254,6 +259,7 @@ export const certifications: Certification[] = [
     kind: 'Foundation',
     issuer: 'Kalayci.com',
     issued: 'Dec 2023',
+    explain: 'Widely used standard for running IT services well: how teams plan, deliver and support the systems people use.',
   },
 ]
 
