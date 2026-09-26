@@ -29,7 +29,7 @@ export default async function Home() {
             <p className="mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[15px] font-medium text-accent sm:text-[17px]">
               <span>Data Engineer</span>
               <span className="text-line" aria-hidden>|</span>
-              <span>Researcher</span>
+              <span>Test Data Management @ BMO</span>
               <span className="text-line" aria-hidden>|</span>
               <span>M.Sc. in Data Science</span>
             </p>
