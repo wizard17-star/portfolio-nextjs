@@ -2,128 +2,120 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Palette: warm off-white + near-black with one deliberate accent (deep teal),
+ * mirrored for dark mode. Follows the system theme.
+ */
+:root {
+  --paper: 251 251 250;
+  --card: 255 255 255;
+  --ink: 20 20 19;
+  --mute: 115 115 111;
+  --line: 233 233 229;
+  --accent: 14 116 144;
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: 16 16 15;
+    --card: 26 26 24;
+    --ink: 236 236 232;
+    --mute: 150 150 144;
+    --line: 42 42 39;
+    --accent: 103 199 214;
+    color-scheme: dark;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
   }
 
   body {
-    @apply bg-canvas text-slate-900;
+    @apply bg-paper text-ink;
+  }
+
+  ::selection {
+    @apply bg-accent/20;
   }
 
   :focus-visible {
-    @apply rounded-sm outline outline-2 outline-offset-2 outline-blue-600;
+    @apply rounded-sm outline outline-2 outline-offset-2 outline-accent;
   }
 }
 
 @layer components {
-  .wrap {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  .label {
+    @apply text-[13px] font-medium text-mute;
   }
 
-  .card {
-    @apply rounded-2xl bg-white p-6 shadow-[0_1px_2px_rgba(15,23,42,0.06)] ring-1 ring-slate-900/5;
+  .underline-grow {
+    @apply relative;
   }
 
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition duration-200 hover:-translate-y-0.5;
+  .underline-grow::after {
+    content: '';
+    @apply absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-current;
+    transition: transform 0.3s var(--ease);
   }
 
-  .btn-primary {
-    @apply btn bg-blue-600 text-white shadow-sm hover:bg-blue-700 hover:shadow-md;
-  }
-
-  .btn-secondary {
-    @apply btn bg-white text-slate-900 shadow-[0_1px_2px_rgba(15,23,42,0.12)] hover:shadow-md;
-  }
-
-  .link {
-    @apply font-medium text-blue-600 underline-offset-4 hover:underline;
-  }
-
-  .tag {
-    @apply rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600;
-  }
-
-  .page-title {
-    @apply text-3xl font-extrabold tracking-tight sm:text-4xl;
+  .underline-grow:hover::after {
+    @apply scale-x-100;
   }
 }
 
-/* Entrance: content rises in gently, staggered with --d */
+/* Staggered entrance, played once on load */
 @keyframes rise {
   from {
     opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
+    transform: translateY(6px);
   }
 }
 
 .rise {
-  animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
-  animation-delay: var(--d, 0s);
+  animation: rise 0.6s var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
 }
 
-/* Terminal: the query types out, then result rows appear one by one */
-@keyframes type {
-  from {
-    width: 0;
+/* Hovering a list dims its siblings so the focused row stands out */
+@media (hover: hover) {
+  .focus-list:hover > li {
+    opacity: 0.4;
   }
-}
-
-/* Typing needs a fixed width in ch; on narrow screens the line simply wraps */
-@media (min-width: 640px) {
-  .typing {
-    display: inline-block;
-    width: calc(var(--chars) * 1ch);
-    overflow: hidden;
-    white-space: nowrap;
-    vertical-align: bottom;
-    animation: type 1.4s steps(var(--chars)) 0.5s both;
+  .focus-list > li {
+    transition: opacity 0.25s var(--ease);
   }
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateX(-6px);
-  }
-  to {
+  .focus-list > li:hover {
     opacity: 1;
-    transform: none;
   }
 }
 
-.row-in {
-  animation: appear 0.35s ease-out both;
-  animation-delay: calc(2s + var(--i) * 0.18s);
+/* Expand/collapse without measuring heights */
+.expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s var(--ease);
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
+.open > .expand {
+  grid-template-rows: 1fr;
 }
 
-.cursor {
-  animation: blink 1s steps(1) infinite;
+.expand > div {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .rise,
-  .typing,
-  .row-in,
-  .cursor {
+  *,
+  *::before,
+  *::after {
     animation: none !important;
-  }
-  .btn {
-    @apply hover:translate-y-0;
+    transition: none !important;
   }
 }

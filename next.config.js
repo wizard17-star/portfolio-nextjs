@@ -30,6 +30,11 @@ const nextConfig = {
       // Handy short link to share: serhataslan.com/cv
       { source: '/cv', destination: '/Resume_Serhat.pdf', permanent: false },
       { source: '/resume', destination: '/Resume_Serhat.pdf', permanent: false },
+      // Everything now lives on the home page
+      { source: '/about', destination: '/', permanent: false },
+      { source: '/projects', destination: '/#projects', permanent: false },
+      { source: '/blog', destination: '/#writing', permanent: false },
+      { source: '/contact', destination: '/', permanent: false },
     ]
   },
 }

@@ -115,104 +115,88 @@ export const education = [
   },
 ]
 
-export type ProjectCategory = 'Data Engineering' | 'BI' | 'ML & AI' | 'Web'
-
 export type Project = {
   title: string
-  category: ProjectCategory
+  /** Short context shown next to the title, e.g. "M.Sc. thesis" */
+  tag: string
+  /** When the project was built, newest first */
+  date: string
   /** How data moves through the system, left to right */
-  flow?: string[]
+  flow: string[]
   description: string
   tech: string[]
-  company?: string
   github?: string
-  highlight?: string
-  featured?: boolean
 }
 
+/** Newest first. Dates come from the GitHub repositories and the CV. */
 export const projects: Project[] = [
   {
-    title: 'Modern Data Warehouse on Azure',
-    category: 'Data Engineering',
-    flow: ['SAP · Salesforce · Dynamics · Karmak', 'Azure Data Factory', 'SQL Server DWH', 'Power BI'],
-    company: 'TEMSA',
-    description:
-      'Cloud data warehouse with CI/CD that unifies SAP, Salesforce, Dynamics, Karmak and SQL Server data. Replaced legacy data services with Azure Data Factory and streamlined data flow across platforms.',
-    tech: ['Azure Data Factory', 'SQL Server', 'Data Warehousing', 'CI/CD'],
-    highlight: '25+ source applications',
-    featured: true,
-  },
-  {
-    title: 'DRAM-T: Risk-Aware Multimodal Transformer',
-    category: 'ML & AI',
+    title: 'DRAM-T',
+    tag: 'M.Sc. thesis',
+    date: 'Sep 2026',
     flow: ['Prices · Macro · News', 'FinBERT + MIDAS', 'Multimodal Transformer', 'Return · Volatility · Correlation', 'Portfolio VaR'],
     description:
-      "MSc thesis. A Transformer that fuses market prices, macroeconomic series and FinBERT news sentiment to forecast returns, volatility and cross-asset correlation for portfolio VaR. Evaluated over 88 runs with leakage-safe walk-forward validation and rigorous significance testing; 100+ unit tests.",
-    tech: ['PyTorch', 'Transformers', 'FinBERT', 'Time Series', 'Statistics'],
+      'Risk-aware multimodal Transformer that fuses market prices, macroeconomic series and FinBERT news sentiment to forecast returns, volatility and cross-asset correlation for portfolio VaR. 88 runs under leakage-safe walk-forward validation, rigorous significance testing, 100+ unit tests.',
+    tech: ['PyTorch', 'Transformers', 'FinBERT', 'Time series'],
     github: 'https://github.com/wizard17-star/dramt',
-    highlight: 'MSc thesis',
-    featured: true,
-  },
-  {
-    title: 'CDC Data Platform with Delta Lake',
-    category: 'Data Engineering',
-    flow: ['PostgreSQL', 'Debezium', 'Kafka', 'Spark', 'Delta Lake: Bronze → Silver → Gold'],
-    description:
-      'End-to-end change data capture: PostgreSQL changes are captured by Debezium, streamed through Kafka and processed by Spark into a Bronze → Silver → Gold medallion lakehouse on Delta Lake and MinIO, with a star schema in the Gold layer. Runs fully in Docker.',
-    tech: ['Kafka', 'Debezium', 'Spark', 'Delta Lake', 'Docker'],
-    github: 'https://github.com/wizard17-star/data-platform',
-    highlight: 'Streaming',
-    featured: true,
-  },
-  {
-    title: 'Fabric-Based BI Architecture',
-    category: 'BI',
-    flow: ['Sources', 'Dataflows', 'Lakehouse', 'Semantic model', 'Power BI'],
-    company: 'TEMSA',
-    description:
-      'End-to-end BI on Microsoft Fabric combining lakehouse, dataflows and semantic models to serve reporting for Europe, America and Türkiye.',
-    tech: ['Microsoft Fabric', 'Lakehouse', 'Dataflows', 'Power BI'],
-    highlight: 'Multi-region reporting',
-  },
-  {
-    title: 'RAG Evaluation App',
-    category: 'ML & AI',
-    flow: ['Documents', 'Sentence Transformers', 'FAISS', 'Gemini', 'Faithfulness · Relevance'],
-    description:
-      'Compares retrieval-augmented generation techniques (hybrid retrieval, reranking, metadata filtering, chain-of-thought prompting) using Gemini, FAISS and Sentence Transformers, scored on faithfulness, relevance and context precision.',
-    tech: ['Python', 'Gemini', 'FAISS', 'Streamlit'],
-    github: 'https://github.com/wizard17-star/TEG-Project',
   },
   {
     title: 'Consumer Complaints Classification',
-    category: 'ML & AI',
+    tag: 'NLP',
+    date: 'Jan 2026',
     flow: ['277K complaints', 'TF-IDF', 'SMOTE', 'Logistic Regression', 'F1 0.747'],
     description:
-      'Text classification on the CFPB consumer complaints dataset (277K records, stratified to 10K). Compared four models on TF-IDF features; Logistic Regression with SMOTE reached F1 0.747.',
+      'Text classification on 277K CFPB consumer complaints (stratified to 10K). Four models compared on TF-IDF features; Logistic Regression with SMOTE reached F1 0.747.',
     tech: ['scikit-learn', 'NLP', 'TF-IDF', 'SMOTE'],
     github: 'https://github.com/wizard17-star/Consumer-Complaints-Classification',
   },
   {
+    title: 'CDC Data Platform',
+    tag: 'streaming',
+    date: 'Jan 2026',
+    flow: ['PostgreSQL', 'Debezium', 'Kafka', 'Spark', 'Delta Lake · Bronze → Silver → Gold'],
+    description:
+      'End-to-end change data capture: every Postgres insert, update and delete is captured by Debezium, streamed through Kafka and processed by Spark into a medallion lakehouse on Delta Lake and MinIO, with a star schema in Gold. Fully Dockerized.',
+    tech: ['Kafka', 'Debezium', 'Spark', 'Delta Lake', 'Docker'],
+    github: 'https://github.com/wizard17-star/data-platform',
+  },
+  {
     title: 'AI Travel Assistant',
-    category: 'ML & AI',
+    tag: 'LLM app',
+    date: 'Jun 2025',
     flow: ['Streamlit UI', 'FastAPI', 'GPT-4 + travel APIs', 'Itinerary'],
     description:
-      'LLM-powered trip planner that combines GPT-4 with attraction, weather and hotel APIs to generate city itineraries, served by a FastAPI backend and a Streamlit UI.',
-    tech: ['FastAPI', 'OpenAI', 'Streamlit', 'REST APIs'],
+      'LLM trip planner combining GPT-4 with attraction, weather and hotel APIs to generate city itineraries, served by a FastAPI backend and a Streamlit UI.',
+    tech: ['FastAPI', 'OpenAI', 'Streamlit'],
     github: 'https://github.com/wizard17-star/ai-travel-assistant',
   },
   {
-    title: 'Personal Portfolio Website',
-    category: 'Web',
+    title: 'RAG Evaluation App',
+    tag: 'LLM',
+    date: 'Apr 2025',
+    flow: ['Documents', 'Sentence Transformers', 'FAISS', 'Gemini', 'Faithfulness · Relevance'],
     description:
-      'This site: a statically rendered Next.js App Router site with ISR-powered Medium feed, CSS-only animations, SEO metadata and structured data.',
-    tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    github: 'https://github.com/wizard17-star/portfolio-nextjs',
+      'Compares retrieval-augmented generation techniques (hybrid retrieval, reranking, metadata filtering, chain-of-thought) with Gemini, FAISS and Sentence Transformers.',
+    tech: ['Python', 'Gemini', 'FAISS', 'Streamlit'],
+    github: 'https://github.com/wizard17-star/TEG-Project',
+  },
+  {
+    title: 'Modern Data Warehouse on Azure',
+    tag: 'TEMSA',
+    date: '2023 – 2024',
+    flow: ['SAP · Salesforce · Dynamics · Karmak', 'Azure Data Factory', 'SQL Server DWH', 'Power BI'],
+    description:
+      'CI/CD-driven cloud warehouse unifying 25+ source applications. Replaced legacy data services with Azure Data Factory and streamlined data flow across platforms.',
+    tech: ['Azure Data Factory', 'SQL Server', 'Data Warehousing', 'CI/CD'],
   },
 ]
 
 export type Certification = {
   name: string
+  /** Short label printed on the badge */
+  short: string
+  /** Credential type shown under the badge */
+  kind: string
   issuer: string
   issued: string
   credentialId?: string
@@ -224,6 +208,8 @@ const learn = (path: string) => `https://learn.microsoft.com/api/credentials/sha
 export const certifications: Certification[] = [
   {
     name: 'Microsoft Certified: Fabric Data Engineer Associate',
+    short: 'Fabric Data Engineer',
+    kind: 'Associate',
     issuer: 'Microsoft',
     issued: 'Jun 2025',
     credentialId: 'D72B36A01DD84512',
@@ -231,6 +217,8 @@ export const certifications: Certification[] = [
   },
   {
     name: 'Microsoft Certified: Azure AI Engineer Associate',
+    short: 'Azure AI Engineer',
+    kind: 'Associate',
     issuer: 'Microsoft',
     issued: 'Jun 2025',
     credentialId: '468AA8CB49CAF8C7',
@@ -238,6 +226,8 @@ export const certifications: Certification[] = [
   },
   {
     name: 'Implement a data warehouse in Microsoft Fabric',
+    short: 'Fabric Data Warehouse',
+    kind: 'Applied Skills',
     issuer: 'Microsoft',
     issued: 'May 2024',
     credentialId: '6487E34CD910364B',
@@ -245,6 +235,8 @@ export const certifications: Certification[] = [
   },
   {
     name: 'ITIL® Foundation',
+    short: 'ITIL®',
+    kind: 'Foundation',
     issuer: 'Kalayci.com',
     issued: 'Dec 2023',
   },

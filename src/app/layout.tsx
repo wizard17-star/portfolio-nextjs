@@ -1,13 +1,12 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { Analytics } from '@vercel/analytics/next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
+import { IBM_Plex_Mono, Newsreader, Schibsted_Grotesk } from 'next/font/google'
 import { site, experience } from '@/lib/site'
 
-const inter = Inter({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-inter' })
-const mono = JetBrains_Mono({ subsets: ['latin'], display: 'swap', variable: '--font-mono' })
+const sans = Schibsted_Grotesk({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-sans' })
+const serif = Newsreader({ subsets: ['latin', 'latin-ext'], display: 'swap', variable: '--font-serif', style: ['normal', 'italic'] })
+const mono = IBM_Plex_Mono({ subsets: ['latin'], weight: ['400', '500'], display: 'swap', variable: '--font-mono' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -48,7 +47,12 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export const viewport: Viewport = { themeColor: '#eef2f7' }
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#fbfbfa' },
+    { media: '(prefers-color-scheme: dark)', color: '#10100f' },
+  ],
+}
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -69,20 +73,16 @@ const personJsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
-      <body className="flex min-h-screen flex-col font-sans antialiased">
+    <html lang="en" className={`${sans.variable} ${serif.variable} ${mono.variable}`}>
+      <body className="font-sans antialiased">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
         <a
           href="#content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[60] focus:rounded-lg focus:bg-blue-600 focus:px-4 focus:py-2 focus:text-white"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[60] focus:rounded-lg focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
         >
           Skip to content
         </a>
-        <Navbar />
-        <main id="content" className="flex flex-1 flex-col">
-          {children}
-        </main>
-        <Footer />
+        <main id="content">{children}</main>
 
         {/* Cookie-free analytics: no consent banner needed under GDPR */}
         <Analytics />

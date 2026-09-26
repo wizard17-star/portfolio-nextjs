@@ -15,19 +15,19 @@ export default function OpengraphImage() {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          padding: '80px',
-          background: '#eef2f7',
-          color: '#0f172a',
-          fontFamily: 'sans-serif',
+          padding: '90px',
+          background: '#fbfbfa',
+          color: '#141413',
+          fontFamily: 'serif',
         }}
       >
-        <div style={{ fontSize: 26, color: '#64748b' }}>serhataslan.com</div>
-        <div style={{ fontSize: 92, fontWeight: 800, marginTop: 20 }}>{site.name}</div>
-        <div style={{ fontSize: 46, fontWeight: 700, marginTop: 8, color: '#2563eb' }}>{site.role}</div>
-        <div style={{ fontSize: 30, marginTop: 36, color: '#475569' }}>
-          Azure · Data Warehousing · Power BI · Microsoft Fabric
+        <div style={{ fontSize: 96, letterSpacing: -2 }}>{site.name}</div>
+        <div style={{ fontSize: 40, marginTop: 18, color: '#0e7490', fontFamily: 'sans-serif' }}>
+          Data Engineer · M.Sc. in Data Science
         </div>
-        <div style={{ fontSize: 26, marginTop: 14, color: '#64748b' }}>{site.location}</div>
+        <div style={{ fontSize: 28, marginTop: 30, color: '#73736f', fontFamily: 'sans-serif' }}>
+          Azure · Data Warehousing · Power BI · Microsoft Fabric — Warsaw
+        </div>
       </div>
     ),
     size

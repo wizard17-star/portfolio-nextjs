@@ -10,27 +10,25 @@ export default function CopyEmail() {
     try {
       await navigator.clipboard.writeText(site.email)
       setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      setTimeout(() => setCopied(false), 1800)
     } catch {
       window.location.href = `mailto:${site.email}`
     }
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
-      <a href={`mailto:${site.email}`} className="break-all text-lg font-semibold text-blue-600 hover:underline">
-        {site.email}
-      </a>
-      <button
-        type="button"
-        onClick={copy}
-        className={`rounded-lg px-3 py-1 text-xs font-semibold transition ${
-          copied ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-        }`}
-        aria-live="polite"
-      >
-        {copied ? 'Copied ✓' : 'Copy'}
+    <>
+      <button type="button" onClick={copy} className="underline-grow transition-colors hover:text-ink">
+        Copy email
       </button>
-    </div>
+      <span
+        role="status"
+        className={`fixed bottom-6 left-1/2 z-50 -translate-x-1/2 rounded-full bg-ink px-4 py-2 text-[13px] text-paper shadow-lg transition duration-300 ease-out ${
+          copied ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'
+        }`}
+      >
+        {copied ? `Copied ${site.email}` : ''}
+      </span>
+    </>
   )
 }
