@@ -60,7 +60,7 @@ export const experience: Experience[] = [
       'Give end-to-end test support, from setting up test data to checking results during test runs.',
       'Build and manage test data sets for many connected banking systems.',
       'Mask and anonymize sensitive data so test environments are safe to use.',
-      'Use SQL to find, extract and validate data, and to solve data issues quickly.',
+      'Use SQL to find, extract and validate data and to solve data issues quickly.',
     ],
     tech: ['SQL', 'Test Data Management', 'End-to-end testing', 'UAT', 'Data Masking'],
   },

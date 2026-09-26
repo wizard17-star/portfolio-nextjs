@@ -50,7 +50,7 @@ export default async function Home() {
           <p>
             Right now I work at <span className="font-semibold text-ink">BMO</span>, closely with the{' '}
             <span className="font-semibold text-ink">QA and UAT teams</span>: I prepare the test data they need for
-            their test case creation, and I support them end to end while they test.
+            their test case creation and I support them end to end while they test.
           </p>
         </div>
 
