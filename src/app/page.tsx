@@ -4,7 +4,7 @@ import CertBadge from '@/components/CertBadge'
 import CopyEmail from '@/components/CopyEmail'
 import ThemeToggle from '@/components/ThemeToggle'
 import { formatDate, getMediumPosts } from '@/lib/getMediumPosts'
-import { certifications, education, experience, projects, site } from '@/lib/site'
+import { certifications, education, experience, projects, site, stack } from '@/lib/site'
 
 export const revalidate = 3600
 
@@ -22,20 +22,31 @@ export default async function Home() {
       {/* Header */}
       <header className="rise flex items-start justify-between gap-4" style={stagger(0)}>
         <div>
-          <h1 className="text-[40px] font-extrabold leading-none tracking-tight sm:text-[52px]">{site.name}</h1>
+          <h1 className="text-[40px] font-bold leading-none tracking-tight sm:text-[50px]">{site.name}</h1>
           <p className="mt-3 text-[17px] font-medium text-accent sm:text-[19px]">Data Engineer · Warsaw</p>
         </div>
         <ThemeToggle />
       </header>
 
-      <p className="rise mt-6 max-w-[720px] text-[17px] leading-[1.7] text-mute sm:text-[18px]" style={stagger(1)}>
-        I design and build data pipelines, warehouses and Power BI reporting on{' '}
-        <span className="font-medium text-ink">Azure and Microsoft Fabric</span>. Today I support QA and UAT teams at{' '}
-        <span className="font-medium text-ink">BMO</span> with test data and end-to-end testing. I hold an{' '}
-        <span className="font-medium text-ink">M.Sc. in Data Science</span>.
+      <p className="rise mt-6 max-w-[720px] text-[17px] leading-[1.75] text-mute sm:text-[18px]" style={stagger(1)}>
+        I&apos;m a data engineer with <span className="font-semibold text-ink">5 years of experience</span> turning
+        scattered business data into reliable pipelines, well-modelled warehouses and reports teams can trust. I hold an{' '}
+        <span className="font-semibold text-ink">M.Sc. in Data Science</span> and currently support QA and UAT teams at
+        BMO.
       </p>
 
-      <nav className="rise mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px] text-mute" style={stagger(2)} aria-label="Links">
+      <div className="rise mt-5" style={stagger(2)}>
+        <p className="text-[12.5px] font-semibold uppercase tracking-[0.08em] text-mute">Technologies I work with</p>
+        <ul className="mt-2.5 flex flex-wrap gap-1.5">
+          {stack.map((t) => (
+            <li key={t} className="rounded-full border border-line bg-card px-3 py-1 text-[13px]">
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <nav className="rise mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 text-[15px] text-mute" style={stagger(2)} aria-label="Links">
         <a href={site.resume} target="_blank" rel="noopener" className="underline-grow font-medium text-ink">
           Resume
         </a>

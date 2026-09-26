@@ -9,7 +9,7 @@ export const site = {
   role: 'Data Engineer',
   headline: 'Data Engineer — Azure, Data Warehousing & Power BI',
   description:
-    'Serhat Aslan is a Warsaw-based Data Engineer with 3+ years of experience building Azure data warehouses, ETL pipelines and Power BI reporting for enterprise teams.',
+    'Serhat Aslan is a Warsaw-based Data Engineer with 5 years of experience building data pipelines, data warehouses and reporting for enterprise teams.',
   location: 'Warsaw, Poland',
   timeZone: 'Europe/Warsaw',
   email: 'serhataslan0009@gmail.com',
@@ -23,11 +23,20 @@ export const site = {
   languages: ['Turkish (native)', 'English (C1)', 'Greek (C1)', 'Polish (A2)'],
 }
 
-export const highlights = [
-  { value: '3+', label: 'Years in data engineering & BI' },
-  { value: '25+', label: 'Applications integrated into the DWH' },
-  { value: '50+', label: 'Power BI dashboards & reports' },
-  { value: '100+', label: 'SQL queries optimized' },
+/** Technologies shown under the intro */
+export const stack = [
+  'SQL',
+  'Python',
+  'Azure Data Factory',
+  'Microsoft Fabric',
+  'Power BI',
+  'SQL Server',
+  'PostgreSQL',
+  'Spark',
+  'Kafka',
+  'Docker',
+  'DAX',
+  'PyTorch',
 ]
 
 export type Experience = {

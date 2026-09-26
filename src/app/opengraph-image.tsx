@@ -16,13 +16,13 @@ export default function OpengraphImage() {
           flexDirection: 'column',
           justifyContent: 'center',
           padding: '90px',
-          background: '#fbfbfa',
-          color: '#141413',
+          background: '#f6f5f1',
+          color: '#34363a',
           fontFamily: 'sans-serif',
         }}
       >
         <div style={{ fontSize: 96, fontWeight: 800, letterSpacing: -3 }}>{site.name}</div>
-        <div style={{ fontSize: 40, marginTop: 18, color: '#0e7490', fontFamily: 'sans-serif' }}>
+        <div style={{ fontSize: 40, marginTop: 18, color: '#4a8a8f', fontFamily: 'sans-serif' }}>
           Data Engineer · M.Sc. in Data Science
         </div>
         <div style={{ fontSize: 28, marginTop: 30, color: '#73736f', fontFamily: 'sans-serif' }}>
