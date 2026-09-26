@@ -182,7 +182,7 @@ export default async function Home() {
           id="credentials"
           icon={GraduationCap}
           title="Education"
-          subtitle="Master’s degree"
+          subtitle="University degrees"
           index={5}
         >
           <div className="flex items-baseline justify-between gap-4 rounded-2xl bg-paper px-4 py-3.5">
@@ -191,6 +191,12 @@ export default async function Home() {
               <span className="block text-[13.5px] text-mute">{msc.school}, Warsaw · thesis on multimodal Transformers</span>
             </p>
             <span className="whitespace-nowrap font-mono text-xs text-mute">{msc.period}</span>
+          </div>
+          <div className="mt-3 px-4">
+            <p className="text-[16px] font-semibold">{education[1].degree}</p>
+            <p className="text-[13.5px] text-mute">
+              {education[1].school}, {education[1].location}
+            </p>
           </div>
         </Section>
 

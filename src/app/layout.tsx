@@ -99,6 +99,7 @@ const jsonLd = {
       address: { '@type': 'PostalAddress', addressLocality: 'Warsaw', addressCountry: 'PL' },
       alumniOf: [
         { '@type': 'CollegeOrUniversity', name: 'Polish-Japanese Academy of Information Technology' },
+        { '@type': 'CollegeOrUniversity', name: 'Çukurova University' },
       ],
       hasCredential: [
         { '@type': 'EducationalOccupationalCredential', credentialCategory: 'degree', name: 'M.Sc. in Data Science' },
