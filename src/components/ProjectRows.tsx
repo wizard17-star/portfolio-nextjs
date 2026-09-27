@@ -51,9 +51,9 @@ export default function ProjectRows({ projects }: { projects: Project[] }) {
                 <div>
                   <div className="space-y-4 pb-5 pt-2">
                     <FlowDiagram steps={p.flow} />
-                    <p className="text-[15px] leading-relaxed text-mute">{p.description}</p>
+                    <p className="text-[15px] leading-relaxed text-ink/85">{p.description}</p>
                     <div className="flex flex-wrap items-center justify-between gap-2 text-[13px]">
-                      <span className="text-mute">{p.tech.join(' · ')}</span>
+                      <span className="font-medium text-accent">{p.tech.join(' · ')}</span>
                       {p.github && (
                         <a href={p.github} target="_blank" rel="noopener noreferrer" className="underline-grow font-medium">
                           View code ↗︎
