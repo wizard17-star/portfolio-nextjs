@@ -5,6 +5,8 @@ import CertBadge from '@/components/CertBadge'
 import CopyEmail from '@/components/CopyEmail'
 import ThemeToggle from '@/components/ThemeToggle'
 import Section from '@/components/Section'
+import ExperienceTimeline from '@/components/ExperienceTimeline'
+import BackToTop from '@/components/BackToTop'
 import { formatDate, getMediumPosts } from '@/lib/getMediumPosts'
 import { certifications, education, experience, projects, site, stack } from '@/lib/site'
 
@@ -16,11 +18,12 @@ const stagger = (i: number) => ({ '--i': i }) as React.CSSProperties
 
 export default async function Home() {
   const posts = (await getMediumPosts()).slice(0, 3)
-  const [current, ...previous] = experience
+  const current = experience[0]
   const msc = education[0]
 
   return (
-    <div className="mx-auto max-w-[920px] px-4 pb-16 pt-8 sm:px-8 sm:pt-12">
+    <div className="relative isolate mx-auto max-w-[920px] px-4 pb-16 pt-8 sm:px-8 sm:pt-12">
+      <div className="page-glow" aria-hidden />
       {/* Intro */}
       <header>
         <div className="flex items-center justify-between gap-4">
@@ -134,32 +137,15 @@ export default async function Home() {
           <ProjectRows projects={projects} />
         </Section>
 
-        {/* Previous experience */}
-        <Section id="experience" icon={History} title="Experience" subtitle="Earlier roles — click to see details" index={3}>
-          <ul className="focus-list border-t border-line">
-            {previous.map((job) => (
-              <li key={`${job.company}-${job.role}`} className="border-b border-line">
-                <details className="group">
-                  <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto] items-baseline gap-4 py-3 text-[16px] [&::-webkit-details-marker]:hidden">
-                    <span>
-                      <span className="font-semibold">{job.role}</span> <span className="text-mute">{job.company}</span>
-                    </span>
-                    <span className="flex items-baseline gap-3 whitespace-nowrap font-mono text-xs text-mute">
-                      {job.period}
-                      <span className="transition-transform duration-300 group-open:rotate-45" aria-hidden>
-                        +
-                      </span>
-                    </span>
-                  </summary>
-                  <ul className="space-y-1 pb-3 text-[14.5px] leading-relaxed text-mute">
-                    {job.points.map((p) => (
-                      <li key={p}>{p}</li>
-                    ))}
-                  </ul>
-                </details>
-              </li>
-            ))}
-          </ul>
+        {/* Career timeline */}
+        <Section
+          id="experience"
+          icon={History}
+          title="Experience"
+          subtitle="My career path, newest first — click a role for details"
+          index={3}
+        >
+          <ExperienceTimeline jobs={experience} />
         </Section>
 
         {/* Technologies */}
@@ -246,6 +232,7 @@ export default async function Home() {
         </span>
         <span>{site.languages.join(' · ')}</span>
       </footer>
+      <BackToTop />
     </div>
   )
 }

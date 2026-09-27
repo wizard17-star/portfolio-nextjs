@@ -41,7 +41,7 @@ body * {
   }
 
   body {
-    @apply bg-paper text-ink;
+    @apply overflow-x-hidden bg-paper text-ink;
   }
 
   ::selection {
@@ -136,6 +136,66 @@ body * {
   transform: translateX(120%);
 }
 
+/* Background: a very faint dot grid that fades out down the page, plus a soft accent glow behind the intro */
+body {
+  background-image: radial-gradient(rgb(var(--ink) / 0.07) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+.page-glow {
+  position: absolute;
+  top: -120px;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  height: 620px;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(40% 55% at 18% 30%, rgb(var(--accent) / 0.16), transparent 70%),
+    radial-gradient(35% 45% at 85% 10%, rgb(var(--accent) / 0.08), transparent 70%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent);
+}
+
+/* Timeline: the accent line grows while the section scrolls through the viewport */
+.timeline-fill {
+  transform: scaleY(1);
+}
+
+@supports (animation-timeline: view()) {
+  .timeline-fill {
+    animation: grow-y linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 60%;
+  }
+}
+
+@keyframes grow-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Architecture diagram: boxes and arrows draw in sequence when a project opens */
+.open .flow-diagram .flow-box,
+.open .flow-diagram .flow-link {
+  animation: rise 0.45s var(--ease) both;
+  animation-delay: calc(0.1s + var(--k, 0) * 110ms);
+}
+
+.flow-dash {
+  animation: dash-flow 1.2s linear infinite;
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
 /* Hovering a list dims its siblings so the focused row stands out */
 @media (hover: hover) {
   .focus-list:hover > li {
@@ -173,5 +233,8 @@ body * {
   *::after {
     animation: none !important;
     transition: none !important;
+  }
+  .timeline-fill {
+    transform: scaleY(1) !important;
   }
 }

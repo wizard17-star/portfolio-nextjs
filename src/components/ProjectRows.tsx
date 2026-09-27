@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import FlowDiagram from './FlowDiagram'
 import type { Project } from '@/lib/site'
 
 /**
@@ -48,19 +49,8 @@ export default function ProjectRows({ projects }: { projects: Project[] }) {
 
               <div className="expand">
                 <div>
-                  <div className="space-y-3 pb-4 pt-1">
-                    <ol className="flex flex-wrap items-center gap-y-1.5 font-mono text-[11.5px]" aria-label="Data flow">
-                      {p.flow.map((step, j) => (
-                        <li key={step} className="flex items-center">
-                          {j > 0 && (
-                            <span className="mx-1.5 text-accent" aria-hidden>
-                              →
-                            </span>
-                          )}
-                          <span className="rounded-md border border-line bg-card px-2 py-1">{step}</span>
-                        </li>
-                      ))}
-                    </ol>
+                  <div className="space-y-4 pb-5 pt-2">
+                    <FlowDiagram steps={p.flow} />
                     <p className="text-[15px] leading-relaxed text-mute">{p.description}</p>
                     <div className="flex flex-wrap items-center justify-between gap-2 text-[13px]">
                       <span className="text-mute">{p.tech.join(' · ')}</span>
