@@ -22,7 +22,7 @@ export default async function Home() {
   return (
     <div className="mx-auto max-w-[920px] px-4 pb-16 pt-8 sm:px-8 sm:pt-12">
       {/* Intro */}
-      <header className="rise" style={stagger(0)}>
+      <header>
         <div className="flex items-center justify-between gap-4">
           <div>
             <h1 className="mask-up text-[34px] font-bold leading-none tracking-tight sm:text-[44px]">{site.name}</h1>
