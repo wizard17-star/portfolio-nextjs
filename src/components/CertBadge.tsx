@@ -15,6 +15,9 @@ export default function CertBadge({ cert }: { cert: Certification }) {
           width={40}
           height={40}
           unoptimized
+          // Badges sit at the top of the page (mobile LCP), so load them straight away
+          loading="eager"
+          fetchPriority="high"
           className="h-10 w-10 shrink-0 transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:scale-105"
         />
       ) : (
@@ -47,12 +50,12 @@ export default function CertBadge({ cert }: { cert: Certification }) {
   )
 
   return cert.url ? (
-    <a href={cert.url} target="_blank" rel="noopener noreferrer" className={cls} aria-label={`${cert.name}. ${cert.explain}`}>
+    <a href={cert.url} target="_blank" rel="noopener noreferrer" className={cls}>
       {inner}
       {tip}
     </a>
   ) : (
-    <div className={cls} tabIndex={0} aria-label={`${cert.name}. ${cert.explain}`}>
+    <div className={cls} tabIndex={0}>
       {inner}
       {tip}
     </div>
