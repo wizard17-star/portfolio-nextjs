@@ -7,23 +7,23 @@
  * mirrored for dark mode. Follows the system theme.
  */
 :root {
-  --paper: 246 245 241;
-  --card: 252 251 248;
-  --ink: 52 54 58;
-  --mute: 128 129 132;
-  --line: 229 227 221;
-  --accent: 74 138 143;
+  --paper: 241 245 249;
+  --card: 255 255 255;
+  --ink: 15 23 42;
+  --mute: 84 97 120;
+  --line: 223 229 238;
+  --accent: 13 148 136;
   --ease: cubic-bezier(0.23, 1, 0.32, 1);
   color-scheme: light;
 }
 
 :root.dark {
-  --paper: 31 33 36;
-  --card: 38 40 44;
-  --ink: 222 222 218;
-  --mute: 164 165 168;
-  --line: 52 55 59;
-  --accent: 134 186 190;
+  --paper: 10 25 47;
+  --card: 17 34 64;
+  --ink: 204 214 246;
+  --mute: 136 146 176;
+  --line: 35 53 84;
+  --accent: 94 234 212;
   color-scheme: dark;
 }
 

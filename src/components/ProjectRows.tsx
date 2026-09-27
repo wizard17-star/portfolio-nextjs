@@ -77,7 +77,7 @@ export default function ProjectRows({ projects }: { projects: Project[] }) {
             className="pointer-events-none fixed left-0 top-0 z-50 hidden w-72 [@media(hover:hover)]:block"
           >
             <div
-              className={`rounded-xl bg-[#2b2d31] px-4 py-3 ring-1 ring-white/10 font-mono text-[11.5px] leading-6 text-[#dcdcd7] shadow-2xl transition duration-200 ease-out ${
+              className={`rounded-xl bg-[#112240] px-4 py-3 ring-1 ring-white/10 font-mono text-[11.5px] leading-6 text-[#ccd6f6] shadow-2xl transition duration-200 ease-out ${
                 peek !== null ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
               }`}
               style={{ transformOrigin: 'top left' }}
@@ -87,8 +87,8 @@ export default function ProjectRows({ projects }: { projects: Project[] }) {
                   <p className="mb-1 font-sans text-[13.5px] font-semibold text-white">{projects[peek].title}</p>
                   {projects[peek].flow.map((step, j) => (
                     <p key={step} className="relative flex items-center gap-2">
-                      {j > 0 && <span className="absolute -top-2.5 left-[2.5px] h-2.5 w-px bg-[#4a4d52]" />}
-                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#86babe]" />
+                      {j > 0 && <span className="absolute -top-2.5 left-[2.5px] h-2.5 w-px bg-[#233554]" />}
+                      <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#5eead4]" />
                       {step}
                     </p>
                   ))}
