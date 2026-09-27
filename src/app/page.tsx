@@ -7,6 +7,7 @@ import ThemeToggle from '@/components/ThemeToggle'
 import Section from '@/components/Section'
 import ExperienceTimeline from '@/components/ExperienceTimeline'
 import BackToTop from '@/components/BackToTop'
+import SectionNav from '@/components/SectionNav'
 import { formatDate, getMediumPosts } from '@/lib/getMediumPosts'
 import { certifications, education, experience, projects, site, stack } from '@/lib/site'
 
@@ -28,7 +29,7 @@ export default async function Home() {
       <header>
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h1 className="mask-up text-[34px] font-bold leading-none tracking-tight sm:text-[44px]">{site.name}</h1>
+            <h1 className="mask-up name-gradient pb-1 text-[34px] font-bold leading-none tracking-tight sm:text-[44px]">{site.name}</h1>
             <p className="stagger mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[15px] font-medium text-accent sm:text-[17px]">
               <span style={{ '--j': 1 } as React.CSSProperties}>Data Engineer</span>
               <span className="text-line" style={{ '--j': 2 } as React.CSSProperties} aria-hidden>|</span>
@@ -94,7 +95,7 @@ export default async function Home() {
 
       <div className="mt-10">
         {/* Current role */}
-        <Section id="now" icon={Briefcase} title="Current role" subtitle="What I do today" index={1}>
+        <Section id="now" icon={Briefcase} title="Current role" subtitle="What I do today" index={1} highlight>
           <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
             <h3 className="text-[18px] font-bold">
               {current.role} <span className="font-normal text-mute">at</span> {current.company}
@@ -233,6 +234,7 @@ export default async function Home() {
         <span>{site.languages.join(' · ')}</span>
       </footer>
       <BackToTop />
+      <SectionNav />
     </div>
   )
 }

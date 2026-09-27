@@ -11,6 +11,7 @@ export default function Section({
   subtitle,
   action,
   index,
+  highlight = false,
   children,
 }: {
   id: string
@@ -19,13 +20,14 @@ export default function Section({
   subtitle: string
   action?: React.ReactNode
   index: number
+  highlight?: boolean
   children: React.ReactNode
 }) {
   return (
     <section
       id={id}
       aria-labelledby={`${id}-title`}
-      className="rise reveal group/section mt-8 scroll-mt-6 rounded-3xl border border-line bg-card p-5 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.35)] sm:p-7"
+      className={`rise reveal group/section mt-8 scroll-mt-20 rounded-3xl${highlight ? ' glow-border' : ''} border border-line bg-card p-5 transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-0.5 hover:border-accent/30 hover:shadow-[0_18px_40px_-28px_rgba(0,0,0,0.35)] sm:p-7`}
       style={{ '--i': index } as React.CSSProperties}
     >
       <header className="mb-5 flex items-start justify-between gap-4 border-b border-line pb-4">
